@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 
 //Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { RegistroAlimentosComponent } from './components/registro-alimentos/registro-alimentos.component';
 //Material
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
@@ -21,7 +21,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RegistroAlimentosComponent } from './components/registro-alimentos/registro-alimentos.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {MatCardModule} from '@angular/material/card';
 
