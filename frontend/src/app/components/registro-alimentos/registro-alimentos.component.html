@@ -1,2 +1,153 @@
-<p>registro-alimentos works!</p>
+<hr color="blue" size=2>
+<div class="container">
+    <h2>FICHA TÉCNICA DE PRODUCTO</h2>
+</div>
 
+<hr color="blue" size=2>
+
+<!-- <div class="container">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+    </form>
+</div> -->
+
+<div class="container" id="formulario">
+    <mat-card class="example-card">
+        <form class="example-form">
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Autor</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <hr color="black" size=2>
+            <br>
+            <h2>Datos Generales</h2>
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Grupo Alimentario</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Común</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Cientifico</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Otros Nombres</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Origen</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Conservación del Producto</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Morfología: descripción del producto</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Temporada de siembra y cosecha:</mat-label>
+                    <textarea matInput></textarea>
+                </mat-form-field>
+            </p>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Presentación</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Unidades</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+            <hr color="black" size=2>
+            <!-- <h5>Ubicación Comercial Ciudad de Loja </h5> -->
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <h5>Ubicación Comercial Ciudad de Loja </h5>
+                        <h6>Mercados Populares</h6>
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Si</mat-radio-button>
+                            <mat-radio-button value="2">No</mat-radio-button>
+                        </mat-radio-group>
+
+                        <h6>Supermercados</h6>
+                        <mat-radio-group aria-label="Select an option">
+                            <mat-radio-button value="1">Si</mat-radio-button>
+                            <mat-radio-button value="2">No</mat-radio-button>
+                        </mat-radio-group>
+                    </td>
+                    <td>
+                        <br>
+                        <br>
+                        <h5>Valor Nutricional: calórico </h5>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Kcal:</mat-label>
+                            <input matInput placeholder="Ex. California">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Glúcidos:</mat-label>
+                            <input matInput placeholder="Ex. California">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Proteínas:</mat-label>
+                            <input matInput placeholder="Ex. California">
+                        </mat-form-field>
+                    </td>
+                    <!-- <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
+                            <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                        </mat-form-field>
+                    </td> -->
+                </tr>
+            </table>
+            <div class="col text-center">
+                <button mat-raised-button class="botones" color="primary" >Guardar</button>
+                <button mat-stroked-button class="botones" color="warn">Cancelar</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

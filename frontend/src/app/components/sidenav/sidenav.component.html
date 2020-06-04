@@ -4,6 +4,9 @@
             <mat-icon>menu</mat-icon>
         </button>
         <h1 class="example-app-name">Dashboard</h1>
+        <a id="salir" routerLink="/" routerLinkActive="active">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">exit_to_app</mat-icon>
+        </a>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -24,6 +27,6 @@
 
         <mat-sidenav-content>
             <router-outlet></router-outlet>
-        </mat-sidenav-content>
+        </mat-sidenav-content>>
     </mat-sidenav-container>
 </div>

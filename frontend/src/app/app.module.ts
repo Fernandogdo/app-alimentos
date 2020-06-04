@@ -23,7 +23,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,12 @@ import {MatCardModule} from '@angular/material/card';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    FormsModule,
+    MatInputModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
