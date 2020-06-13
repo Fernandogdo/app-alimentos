@@ -16,7 +16,7 @@
 
 /* tarjeta */
 .example-card{
-    background-color: lightyellow;
+    background-color: rgb(255, 255, 255);
     margin: 30px;
 }
 .example-form {

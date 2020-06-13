@@ -1,14 +1,34 @@
 .container{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   /* margin: auto; */
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
 }
 
 .example-card {
   max-width: 100%;
+  margin-top: 25px;
 }
 
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+#formulario{
+  min-width: 150px;
+  max-width: 350px;
+}
+
+/* botones */
+.botones{
+  margin-left: 20px !important;
 }

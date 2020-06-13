@@ -4,25 +4,45 @@
   <h2>Categoría de Alimentos</h2>
 
 </div>
+<!-- INgresar Categorias -->
+<div class="container" id="formulario">
+  <mat-card class="example-card">
+
+    <!-- Formulario Categorias -->
+    <form #categoryForm="ngForm" class="example-form" (ngSubmit)="addCategory(categoryForm)">
+      <mat-form-field class="example-full-width">
+        <mat-label>Nombre Categoria</mat-label>
+        <input type="text"matInput  name="name" #name="ngModel" [(ngModel)]="categoriaAlimentoService.selectedCategory.name" placeholder="Ingrese Categoria">
+      </mat-form-field>
+  
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput name="description" #name="ngModel" [(ngModel)]="categoriaAlimentoService.selectedCategory.description" placeholder="Esta categoria de alimentos es..."></textarea>
+      </mat-form-field>
+      <div class="col text-center">
+        <button mat-raised-button class="botones" color="primary" (click)="openSnackBar('Categoria Agregada', 'Cerrar')">Agregar</button>
+        <button mat-stroked-button class="botones" (click)="resetForm(categoryForm)" color="warn">Limpiar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
 
 <div class="container">
-  <mat-card class="example-card">
+  <mat-card class="example-card" *ngFor="let category of categoriaAlimentoService.categories">
     <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registro">
+      <button class="float-right" mat-fab color="primary" routerLink="/registrosubcategoria">
         <mat-icon>addchart</mat-icon>
       </button>
     </div>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Frutas</mat-card-title>
+      <mat-card-title>{{category.name}}</mat-card-title>
       <mat-card-subtitle>Dog Breed</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
       <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
+        {{category.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
@@ -34,118 +54,5 @@
       </button>
     </mat-card-actions>
   </mat-card>
-</div>
+</div> 
 
-<div class="container">
-  <mat-card class="example-card">
-    <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registro">
-        <mat-icon>addchart</mat-icon>
-      </button>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Lacteos</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <mat-icon>addchart</mat-icon>
-      </button> -->
-      <button mat-stroked-button color="primary">
-        <mat-icon>visibility</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="container">
-  <mat-card class="example-card">
-    <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registro">
-        <mat-icon>addchart</mat-icon>
-      </button>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Carnes, Pescado y Huevos</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-stroked-button color="primary">
-        <mat-icon>visibility</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="container">
-  <mat-card class="example-card">
-    <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registro">
-        <mat-icon>addchart</mat-icon>
-      </button>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Verduras y Hortalizas</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-stroked-button color="primary">
-        <mat-icon>visibility</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="container">
-  <mat-card class="example-card">
-    <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registro">
-        <mat-icon>addchart</mat-icon>
-      </button>
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Tuberculos, legumbres, frutos secos</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-        bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <mat-icon>addchart</mat-icon>
-      </button> -->
-      <button mat-stroked-button color="primary">
-        <mat-icon>visibility</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>

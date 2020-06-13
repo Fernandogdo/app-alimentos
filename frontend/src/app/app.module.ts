@@ -8,15 +8,17 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule } from '@angular/material/list';
+
 
 //Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistroAlimentosComponent } from './components/registro-alimentos/registro-alimentos.component';
+import { RegistroSubcategoriasComponent } from './components/registro-subcategorias/registro-subcategorias.component';
 //Material
 import {MatMenuModule} from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule} from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +29,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalSubcategoriaComponent } from './components/modal-subcategoria/modal-subcategoria.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,10 @@ import {MatRadioModule} from '@angular/material/radio';
     DashboardComponent,
     RegistroAlimentosComponent,
     SidenavComponent,
+    RegistroSubcategoriasComponent,
+    ModalSubcategoriaComponent,
   ],
+  entryComponents:[ModalSubcategoriaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,7 +65,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatGridListModule,
     FormsModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
