@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SubcategoriaAlimento  } from '../models/subcategoria-alimento'
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +9,30 @@ import { HttpClient } from '@angular/common/http';
 export class SubcategoriaAlimentoService {
 
   selectedsubCategory: SubcategoriaAlimento;
-  subCategories:SubcategoriaAlimento[];
-  readonly URL = 'http://localhost:3000/api/subcategorias';
+  subcategories:SubcategoriaAlimento[];
+  URL = 'http://localhost:3000/api/subcategorias/';
+  URL_Buscar = 'http://localhost:3000/api/subcategorias/buscar/';
 
+  data;
   constructor(
     private http: HttpClient
   ) { 
     this.selectedsubCategory = new SubcategoriaAlimento();
   }
 
-  getSubCategories() {
-    return this.http.get(this.URL);
+  // getSubCategories() {
+  //   return this.http.get(this.URL);
+  // }
+
+  //Add subcategoria
+  postSubCategory(subCategory: SubcategoriaAlimento) {
+    return this.http.post(this.URL, subCategory );
   }
 
-  postSubCategory(subcategory: SubcategoriaAlimento) {
-    return this.http.post(this.URL, subcategory );
+  //Trae SUbCategoria por id de categoria
+  getSubCategory(categoria): Observable<any> {
+    return this.http.get(this.URL_Buscar + categoria );
   }
 
+  
 }

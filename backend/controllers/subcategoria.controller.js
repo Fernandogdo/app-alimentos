@@ -39,6 +39,13 @@ subcategoriaCtrl.deletesubCategoria = async (req, res) =>{
     res.json({status: 'SubCategoria deleted'});
 }
 
+subcategoriaCtrl.seleccionaSubcategoria = async (req, res) => {
+    const categoriaa = req.params.id;
+
+    const aaa = await SubCategoria.find({ categoria: categoriaa});
+    res.json(aaa);
+}
+
 module.exports = subcategoriaCtrl;
 
 // creación de rama personal 

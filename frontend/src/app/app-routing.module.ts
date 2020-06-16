@@ -8,7 +8,7 @@ import { RegistroSubcategoriasComponent } from './components/registro-subcategor
 const routes: Routes = [
   {path:'dashboard', component: DashboardComponent},
   {path:'registroalimento', component: RegistroAlimentosComponent},
-  {path: 'registrosubcategoria', component: RegistroSubcategoriasComponent}
+  {path: 'registrosubcategoria/:id', component: RegistroSubcategoriasComponent}
 ];
 
 @NgModule({

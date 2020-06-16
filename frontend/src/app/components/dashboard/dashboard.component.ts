@@ -41,8 +41,7 @@ export class DashboardComponent implements OnInit{
         this.categoriaAlimentoService.categories = res as CategoriaAlimento[];
         // this.categories
         console.log(res);
-      }) 
-      
+      })    
   }
 
 

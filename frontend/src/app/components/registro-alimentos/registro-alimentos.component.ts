@@ -25,5 +25,6 @@ export class RegistroAlimentosComponent implements OnInit {
   shouldRun = true;
   ngOnInit() {
   }
+  
 
 }
