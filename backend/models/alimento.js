@@ -6,7 +6,7 @@ var SubCategoria = mongoose.model('SubCategoria');
 
 const AlimentoSchema = new Schema({
     autor: { type: String, required: true},
-    date: { type: String, required: true},
+    fecha: { type: String, required: true},
     categoria: { type: String, required: true},
     nombre_comun: {type: String, required: true},
     nombre_cientifico: {type: String, required: true},
@@ -22,7 +22,7 @@ const AlimentoSchema = new Schema({
     kilocalorias: {type: String, required: true},
     glucidos: {type: String, required: true},
     proteinas: {type: String, required: true},
-    imagePath: {type: String, required: true},
+    // imagePath: {type: String, required: true},
     subcategoria: { type: Schema.ObjectId, ref:"SubCategoria", required: true}
 });
 

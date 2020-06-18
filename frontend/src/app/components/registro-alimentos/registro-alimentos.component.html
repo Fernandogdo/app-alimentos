@@ -21,7 +21,7 @@
 
 <div class="container" id="formulario">
     <mat-card class="example-card">
-        <form class="example-form">
+        <form #alimentoForm="ngForm" (ngSubmit)="addAlimento(alimentoForm)" class="example-form">
 
             <table class="example-full-width" cellspacing="0">
                 <tr>

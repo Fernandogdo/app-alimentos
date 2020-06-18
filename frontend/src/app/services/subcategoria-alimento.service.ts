@@ -34,5 +34,14 @@ export class SubcategoriaAlimentoService {
     return this.http.get(this.URL_Buscar + categoria );
   }
 
+  putSubCategory(subcategory: SubcategoriaAlimento){
+    return this.http.put(this.URL + `${subcategory._id}`, subcategory)
+  }
+
+  deleteSubCategory(_id: string){
+    return this.http.delete(this.URL + _id);
+  }
+
+
   
 }
