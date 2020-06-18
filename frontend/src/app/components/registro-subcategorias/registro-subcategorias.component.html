@@ -41,7 +41,7 @@
       <button class="float-right" id="botones" (click)="editSubCategory(subcategory)" mat-fab color="accent">
         <mat-icon>create</mat-icon>
       </button>
-      <button class="float-right" id="botones" mat-fab color="primary" routerLink="/registroalimento">
+      <button class="float-right" id="botones" mat-fab color="primary"  [routerLink]="['/registroalimento/', subcategory._id]">
         <mat-icon>addchart</mat-icon>
       </button>
       
@@ -53,16 +53,11 @@
       <!-- <mat-card-subtitle> {{subcategory.categoria}} </mat-card-subtitle> -->
     </mat-card-header>
 
-    <!-- <mat-card-content>
-        <p>
-         e
-        </p>
-      </mat-card-content> -->
     <mat-card-actions>
       <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
           <mat-icon>addchart</mat-icon>
         </button> -->
-      <button mat-stroked-button color="primary">
+      <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]" >
         <mat-icon>visibility</mat-icon>
       </button>
     </mat-card-actions>

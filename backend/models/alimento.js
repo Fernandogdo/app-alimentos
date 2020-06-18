@@ -19,10 +19,11 @@ const AlimentoSchema = new Schema({
     unidades: {type: String, required: true},
     mercado: {type: String, required: true},
     supermercado: {type: String, required: true},
-    kilocalorias: {type: String, required: true},
-    glucidos: {type: String, required: true},
-    proteinas: {type: String, required: true},
+    kilocalorias: {type: String, required: false},
+    glucidos: {type: String, required: false},
+    proteinas: {type: String, required: false},
     // imagePath: {type: String, required: true},
+    lipidos: {type: String, required: false},
     subcategoria: { type: Schema.ObjectId, ref:"SubCategoria", required: true}
 });
 

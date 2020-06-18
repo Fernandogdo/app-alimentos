@@ -18,7 +18,8 @@ export class Alimento {
         supermercado = '',
         kilocalorias = '',
         glucidos = '',
-        proteinas = ''
+        proteinas = '',
+        lipidos = ''
 
     ){
 
@@ -40,7 +41,8 @@ export class Alimento {
         this.supermercado = supermercado;
         this.kilocalorias = kilocalorias;
         this.glucidos = glucidos;
-        this.proteinas = proteinas
+        this.proteinas = proteinas;
+        this.lipidos = lipidos;
 
     }
     _id?: string;
@@ -62,5 +64,6 @@ export class Alimento {
     kilocalorias?: string;
     glucidos: string;
     proteinas?: string;
+    lipidos?: string;
 
 }

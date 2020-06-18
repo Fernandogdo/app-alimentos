@@ -55,7 +55,6 @@ subcategoriaCtrl.deletesubCategoria = async (req, res) =>{
 
 subcategoriaCtrl.seleccionaSubcategoria = async (req, res) => {
     const categoriaa = req.params.id;
-
     const aaa = await SubCategoria.find({ categoria: categoriaa});
     res.json(aaa);
 }

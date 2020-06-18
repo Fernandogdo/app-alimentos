@@ -32,6 +32,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalSubcategoriaComponent } from './components/modal-subcategoria/modal-subcategoria.component';
+import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ModalSubcategoriaComponent } from './components/modal-subcategoria/moda
     SidenavComponent,
     RegistroSubcategoriasComponent,
     ModalSubcategoriaComponent,
+    VisualizaAlimentoComponent,
   ],
   entryComponents:[ModalSubcategoriaComponent],
   imports: [

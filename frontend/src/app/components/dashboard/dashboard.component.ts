@@ -29,6 +29,9 @@ export class DashboardComponent implements OnInit{
     this.categoriaAlimentoService.postCategory(form.value) //Toma el valor del empleado 
       .subscribe(res => {
         console.log(res)
+        this._snackBar.open("Categoria Agregada", "Cerrar", {
+          duration: 2000,
+        });
         this.resetForm(form);
         this.getCategories();
       });
@@ -52,12 +55,12 @@ export class DashboardComponent implements OnInit{
       this.categoriaAlimentoService.selectedCategory = new CategoriaAlimento();
     }
   }
-
+  
   //SnackBar
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open("Categoria Agregada", "Cerrar", {
-      duration: 2000,
-    });
-  }
+  // openSnackBar(message: string, action: string) {
+  //   this._snackBar.open("Categoria Agregada", "Cerrar", {
+  //     duration: 2000,
+  //   });
+  // }
 
 }

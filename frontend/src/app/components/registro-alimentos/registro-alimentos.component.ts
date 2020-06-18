@@ -1,6 +1,10 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-
+import { AlimentoService } from './../../services/alimento.service';
+import { Alimento } from 'src/app/models/alimento';
+import { ActivatedRoute, Params } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-registro-alimentos',
   templateUrl: './registro-alimentos.component.html',
@@ -8,23 +12,47 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class RegistroAlimentosComponent implements OnInit {
 
-  mobileQuery: MediaQueryList;
+  
+  idSubCategoria;
 
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(
+    private alimentoService: AlimentoService,
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
+    ) 
+  
+    {
+   
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
+  // mercadoSupermercado: string = 'si';
 
-  shouldRun = true;
+  tipoEleccion = [
+    'Si',
+    'No'
+  ];
+
   ngOnInit() {
+    this.idSubCategoria = this.route.snapshot.params['id'];
+    console.log('IDSUBCATEGORIA',this.idSubCategoria);
   }
   
 
+  addAlimento(form:NgForm){
+    this.alimentoService.postAlimento(form.value)
+      .subscribe(res => {
+        console.log(res);
+        this._snackBar.open("Alimento Agregado", "Cerrar", {
+          duration: 2000,
+        });
+        this.resetForm(form);
+      });  
+  }
+
+  resetForm(form?:NgForm){
+    if (form) {
+      form.reset();
+      this.alimentoService.selectedAlimento = new Alimento();
+    }
+  }
 }

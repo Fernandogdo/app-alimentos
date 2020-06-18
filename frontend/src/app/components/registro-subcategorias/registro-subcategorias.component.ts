@@ -58,6 +58,9 @@ export class RegistroSubcategoriasComponent implements OnInit {
           console.log(res);
           this.subcategoriaAlimentoService.selectedsubCategory._id='';
           this.subcategoriaAlimentoService.selectedsubCategory.name='';
+          this._snackBar.open("Sub Categoria Actualizada", "Cerrar", {
+            duration: 2000,
+          });
           this.getSubCategories();
          
         })
@@ -71,17 +74,14 @@ export class RegistroSubcategoriasComponent implements OnInit {
           console.log(nuevaRetroalimentacion);
           console.log('se guardo');
           this.subcategoriaAlimentoService.selectedsubCategory.name='';
+          this._snackBar.open("Sub Categoria Agregada", "Cerrar", {
+            duration: 2000,
+          });
           this.getSubCategories();
           // this.subcategoriaAlimentoService.selectedsubCategory.name='';
         });
         this.getSubCategories(); 
     }
-
-    // this.subcategoriaAlimentoService.selectedsubCategory.name='';
-    // this.subcategoriaAlimentoService.selectedsubCategory._id='';
-
-
-    // this.resetForm(form.value.name);
   }
 
   getSubCategories() {
@@ -102,6 +102,9 @@ export class RegistroSubcategoriasComponent implements OnInit {
   deleteSubCategory(_id: string) {
     this.subcategoriaAlimentoService.deleteSubCategory(_id)
       .subscribe(res => {
+        this._snackBar.open("Sub Categoria Eliminada", "Cerrar", {
+          duration: 2000,
+        });
         this.getSubCategories();
       });
   }
