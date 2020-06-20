@@ -37,4 +37,11 @@ alimentoCtrl.deleteAlimento = async (req, res) =>{
     res.json({status: 'Alimento deleted'});
 }
 
+alimentoCtrl.seleccionaAlimento = async (req, res) => {
+    const alimento = req.params.id;
+    const aaa = await Alimento.find({ subcategoria: alimento});
+    res.json(aaa);
+}
+
+
 module.exports = alimentoCtrl;
