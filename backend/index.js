@@ -21,6 +21,8 @@ app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 // app.use('/api/alimento', require(''));
 
 app.use('/api/alimentos', require('./routes/alimentos.routes'));
+// app.use('/api/fotos', require('./routes/foto.routes'));
+
 //Folder for public files
 // app.use('/uploads', express.static(path.resolve('uploads')));
 
