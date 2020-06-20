@@ -21,6 +21,7 @@ const alimento = require('../controllers/alimento.controller');
 router.get('/', alimento.getAlimentos);
 router.post('/', alimento.creaAlimento);
 router.get('/:id', alimento.getAlimento);
+router.get('/buscar/:id', alimento.seleccionaAlimento);
 router.put('/:id', alimento.editAlimento);
 router.delete('/:id', alimento.deleteAlimento);
 

@@ -5,4 +5,5 @@ export class SubcategoriaAlimento {
     }
     _id?: string;
     name?: string;
+    categoria?:string;
 }

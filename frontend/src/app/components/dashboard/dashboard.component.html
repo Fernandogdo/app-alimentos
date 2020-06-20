@@ -20,7 +20,7 @@
         <textarea matInput name="description" #name="ngModel" [(ngModel)]="categoriaAlimentoService.selectedCategory.description" placeholder="Esta categoria de alimentos es..."></textarea>
       </mat-form-field>
       <div class="col text-center">
-        <button mat-raised-button class="botones" color="primary" (click)="openSnackBar('Categoria Agregada', 'Cerrar')">Agregar</button>
+        <button mat-raised-button class="botones" color="primary">Agregar</button>
         <button mat-stroked-button class="botones" (click)="resetForm(categoryForm)" color="warn">Limpiar</button>
       </div>
     </form>
@@ -30,14 +30,14 @@
 <div class="container">
   <mat-card class="example-card" *ngFor="let category of categoriaAlimentoService.categories">
     <div class="float-right">
-      <button class="float-right" mat-fab color="primary" routerLink="/registrosubcategoria">
+      <button class="float-right" mat-fab color="primary" [routerLink]="['/registrosubcategoria', category._id]" routerLinkActive="router-link-active"  >
         <mat-icon>addchart</mat-icon>
       </button>
     </div>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{category.name}}</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <mat-card-subtitle>{{category.id}} </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
@@ -45,14 +45,11 @@
         {{category.description}}
       </p>
     </mat-card-content>
-    <mat-card-actions>
-      <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-        <mat-icon>addchart</mat-icon>
-      </button> -->
+    <!-- <mat-card-actions>
       <button mat-stroked-button color="primary">
         <mat-icon>visibility</mat-icon>
       </button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </mat-card>
 </div> 
 

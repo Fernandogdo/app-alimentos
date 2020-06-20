@@ -4,30 +4,24 @@
     /* margin: auto; */
   }
   
+
 .example-form {
     min-width: 150px;
     max-width: 500px;
     width: 100%;
 }
 
-#formulario{
+/* #formulario{
     min-width: 150px;
     max-width: 350px;
-}
-  
-.invisible{
-    display: block;
-    visibility: hidden;
-    height: 0;
-    width: 0;
-}
+} */
 
 .example-full-width {
     width: 100%;
 }
   
 .example-card {
-    max-width: 85%;
+    max-width: 100%;
     margin-top: 25px;
 }
 
@@ -38,4 +32,3 @@
 #boton {
     margin-top: 30px;
 }
-

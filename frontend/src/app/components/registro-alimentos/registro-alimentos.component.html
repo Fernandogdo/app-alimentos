@@ -6,35 +6,30 @@
 <hr color="blue" size=2>
 
 <!-- <div class="container">
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-        </mat-form-field>
-    </form>
+    <div class="col text-center">
+        <button mat-raised-button class="botones" color="primary" [routerLink]="['/routePath']" routerLinkActive="router-link-active" >Visualizar Alimentos</button>
+    </div>
 </div> -->
 
 <div class="container" id="formulario">
     <mat-card class="example-card">
-        <form class="example-form">
-
+        <form #alimentoForm="ngForm" (ngSubmit)="addAlimento(alimentoForm)" class="example-form">
+            <!-- Id SubCategoria -->
+            <input type="hidden" name="subcategoria" #subcategoria="ngModel" [(ngModel)]="idSubCategoria">
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Autor</mat-label>
-                            <input matInput>
+                            <input matInput type="text" name="autor" #autor="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.autor">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Fecha</mat-label>
-                            <input matInput>
+                            <input matInput type="text" name="fecha" #fecha="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.fecha">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -46,38 +41,46 @@
             <p>
                 <mat-form-field class="example-full-width">
                     <mat-label>Grupo Alimentario</mat-label>
-                    <input matInput>
+                    <input matInput type="text" name="categoria" #categoria="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.categoria">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Nombre Común</mat-label>
-                    <input matInput>
+                    <input matInput type="text" name="nombre_comun" #nombre_comun="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.nombre_comun">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Nombre Cientifico</mat-label>
-                    <input matInput>
+                    <input matInput type="text" name="nombre_cientifico" #nombre_cientifico="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.nombre_cientifico">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Otros Nombres</mat-label>
-                    <input matInput>
+                    <input matInput type="text" name="otro_nombre" #otro_nombre="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.otro_nombre">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label>Origen</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput type="text" name="origen" #origen="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.origen"></textarea>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Conservación del Producto</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput type="text" name="conservacion_alimento" #conservacion_alimento="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.conservacion_alimento"></textarea>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Morfología: descripción del producto</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput type="text" name="description" #description="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.description"></textarea>
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
                     <mat-label>Temporada de siembra y cosecha:</mat-label>
-                    <textarea matInput></textarea>
+                    <textarea matInput type="text" name="temporada" #temporada="ngModel"
+                        [(ngModel)]="alimentoService.selectedAlimento.temporada"></textarea>
                 </mat-form-field>
             </p>
 
@@ -86,13 +89,15 @@
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Presentación</mat-label>
-                            <input matInput>
+                            <input matInput type="text" name="presentacion" #presentacion="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.presentacion">
                         </mat-form-field>
                     </td>
                     <td>
                         <mat-form-field class="example-full-width">
                             <mat-label>Unidades</mat-label>
-                            <input matInput>
+                            <input matInput type="text" name="unidades" #unidades="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.unidades">
                         </mat-form-field>
                     </td>
                 </tr>
@@ -107,15 +112,19 @@
                     <td>
                         <h5>Ubicación Comercial Ciudad de Loja </h5>
                         <h6>Mercados Populares</h6>
-                        <mat-radio-group aria-label="Select an option">
-                            <mat-radio-button value="1">Si</mat-radio-button>
-                            <mat-radio-button value="2">No</mat-radio-button>
+                        <mat-radio-group aria-label="Select an option" name="mercado" #mercado="ngModel"
+                            [(ngModel)]="alimentoService.selectedAlimento.mercado">
+                            <mat-radio-button *ngFor="let op of tipoEleccion" [value]="op">
+                                {{op}}
+                            </mat-radio-button>
                         </mat-radio-group>
 
                         <h6>Supermercados</h6>
-                        <mat-radio-group aria-label="Select an option">
-                            <mat-radio-button value="1">Si</mat-radio-button>
-                            <mat-radio-button value="2">No</mat-radio-button>
+                        <mat-radio-group aria-label="Select an option" name="supermercado" #supermercado="ngModel"
+                            [(ngModel)]="alimentoService.selectedAlimento.supermercado">
+                            <mat-radio-button *ngFor="let op of tipoEleccion" [value]="op">
+                                {{op}}
+                            </mat-radio-button>
                         </mat-radio-group>
                     </td>
                     <td>
@@ -124,15 +133,24 @@
                         <h5>Valor Nutricional: calórico </h5>
                         <mat-form-field class="example-full-width">
                             <mat-label>Kcal:</mat-label>
-                            <input matInput placeholder="Ex. California">
+                            <input matInput type="text" name="kilocalorias" #kilocalorias="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.kilocalorias"
+                                placeholder="Ex. California">
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Glúcidos:</mat-label>
-                            <input matInput placeholder="Ex. California">
+                            <input matInput type="text" name="glucidos" #glucidos="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.glucidos" placeholder="Ex. California">
                         </mat-form-field>
                         <mat-form-field class="example-full-width">
                             <mat-label>Proteínas:</mat-label>
-                            <input matInput placeholder="Ex. California">
+                            <input matInput type="text" name="proteinas" #proteinas="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.proteinas" placeholder="Ex. California">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Lípidos:</mat-label>
+                            <input matInput type="text" name="lipidos" #lipidos="ngModel"
+                                [(ngModel)]="alimentoService.selectedAlimento.lipidos" placeholder="Ex. California">
                         </mat-form-field>
                     </td>
                     <!-- <td>
@@ -145,8 +163,9 @@
                 </tr>
             </table>
             <div class="col text-center">
-                <button mat-raised-button class="botones" color="primary" >Guardar</button>
-                <button mat-stroked-button class="botones" color="warn">Cancelar</button>
+                <button mat-raised-button class="botones" color="primary">Guardar</button>
+                <button mat-stroked-button class="botones" color="warn"
+                    (click)="resetForm(alimentoForm)">Limpiar</button>
             </div>
         </form>
     </mat-card>

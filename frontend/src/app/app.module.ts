@@ -32,10 +32,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ModalSubcategoriaComponent } from './components/modal-subcategoria/modal-subcategoria.component';
-import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { LoginComponent } from './components/login/login.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -45,9 +44,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     SidenavComponent,
     RegistroSubcategoriasComponent,
     ModalSubcategoriaComponent,
-    RegistroUsuariosComponent,
-    ProfileComponent,
-    LoginComponent
+    VisualizaAlimentoComponent,
   ],
   entryComponents:[ModalSubcategoriaComponent],
   imports: [

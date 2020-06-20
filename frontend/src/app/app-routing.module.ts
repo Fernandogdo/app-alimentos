@@ -6,7 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegistroSubcategoriasComponent } from './components/registro-subcategorias/registro-subcategorias.component';
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
+import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
@@ -15,6 +15,9 @@ const routes: Routes = [
   {path: 'registrosubcategoria', component: RegistroSubcategoriasComponent},
   {path: 'registrousuario', component: RegistroUsuariosComponent},
   {path: 'profile', component: ProfileComponent}
+  {path:'registroalimento/:id', component: RegistroAlimentosComponent},
+  {path: 'registrosubcategoria/:id', component: RegistroSubcategoriasComponent},
+  {path: 'visualiza/:id', component: VisualizaAlimentoComponent}
 ];
 
 @NgModule({
