@@ -31,3 +31,4 @@ app.use('/api/alimentos', require('./routes/alimentos.routes'));
 app.listen(app.get('port'), ()=> {
     console.log('Server on port', app.get('port'));
 });
+
