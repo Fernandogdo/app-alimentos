@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //Connect DB
 const URI = 'mongodb://localhost/alimentos'; //Se crea BD
 
-mongoose.connect(URI)
+mongoose.connect(URI, { useNewUrlParser: true })
     .then(db => console.log('DB is connected'))
     .catch(err=> console.error(err));
 

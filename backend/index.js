@@ -16,6 +16,9 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 
 // Routes of API
+app.use('/api/users' ,require('./routes/users.routes'));
+app.use('/api/roles' ,require('./routes/roles.routes'));
+app.use('/api/login' ,require('./routes/login.routes'));
 app.use('/api/categorias' ,require('./routes/categorias.routes'));
 app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 // app.use('/api/alimento', require(''));
