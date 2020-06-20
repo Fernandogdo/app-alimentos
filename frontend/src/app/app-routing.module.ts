@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'registroalimento', component: RegistroAlimentosComponent},
   {path: 'registrosubcategoria', component: RegistroSubcategoriasComponent},
   {path: 'registrousuario', component: RegistroUsuariosComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'profile', component: ProfileComponent},
   {path:'registroalimento/:id', component: RegistroAlimentosComponent},
   {path: 'registrosubcategoria/:id', component: RegistroSubcategoriasComponent},
   {path: 'visualiza/:id', component: VisualizaAlimentoComponent}

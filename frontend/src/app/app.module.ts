@@ -34,6 +34,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalSubcategoriaComponent } from './components/modal-subcategoria/modal-subcategoria.component';
 import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegistroSubcategoriasComponent,
     ModalSubcategoriaComponent,
     VisualizaAlimentoComponent,
+    LoginComponent,
+    RegistroUsuariosComponent,
+    ProfileComponent
   ],
   entryComponents:[ModalSubcategoriaComponent],
   imports: [
