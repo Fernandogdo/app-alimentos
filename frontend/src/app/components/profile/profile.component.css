@@ -1,0 +1,15 @@
+.profile-img{
+    text-align: center;
+    
+}
+.profile-img img{
+    width: 70%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+#btnEditar{
+
+    background-color:#003F72;
+    color: white;
+}

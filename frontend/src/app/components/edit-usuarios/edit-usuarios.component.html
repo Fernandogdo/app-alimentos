@@ -1,39 +1,40 @@
+
 <div class="container">
     <h2 mat-dialog-title id="formTUser">Registrar Usuario</h2>
     <mat-card class="example-card" >
         
-        <form  #userForm="ngForm" (submit)="addNewUser(userForm)">
+        <form  #userForm="ngForm" >
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Nombre</mat-label>
-                    <input type="text"  matInput name="name" #name="ngModel" placeholder="Ingrese el nombre" [(ngModel)]="user.name">
+                    <input type="text" [(ngModel)]="userdata.name" matInput name="name" #name="ngModel" placeholder="Ingrese el nombre"  [(ngModel)]="user.name">
                 </mat-form-field>
 
             </div>
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Apellido</mat-label>
-                    <input type="text" matInput name="lastname" #name="ngModel" placeholder="Ingrese el apellido" [(ngModel)]="user.lastname">
+                    <input type="text" [(ngModel)]="userdata.lastname" matInput name="lastname" #name="ngModel" placeholder="Ingrese el apellido" [(ngModel)]="user.lastname">
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
                     <!-- <input type="text" matInput placeholder="pat@example.com" [formControl]="email" required [(ngModel)]="user.email" > -->
-                    <input type="text" matInput name="email" #name="ngModel" placeholder="pat@example.com" required [(ngModel)]="user.email" >
+                    <input type="text" [(ngModel)]="userdata.email" matInput name="email" #name="ngModel" placeholder="pat@example.com" required [(ngModel)]="user.email" >
                     <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Username</mat-label>
-                    <input type="text" matInput  name="username" #name="ngModel" placeholder="Ingrese el apellido" [(ngModel)]="user.username">
+                    <input type="text" [(ngModel)]="userdata.username" matInput  name="username" #name="ngModel" placeholder="Ingrese el apellido" [(ngModel)]="user.username">
                 </mat-form-field>
             </div>
             <div class="form-group">
                 <mat-form-field class="example-full-width" appearance="fill">
                     <mat-label>Ingrese un password</mat-label>
-                    <input matInput name="password" #name="ngModel" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password">
+                    <input [(ngModel)]="userdata.password" matInput name="password" #name="ngModel" [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -42,24 +43,20 @@
             </div>
             <div class="form-group">
                 <h6>Admin User</h6>
-                <mat-checkbox id="admincheck" name="isAdmin" #name="ngModel" [(ngModel)]="user.isAdmin" >Check me!</mat-checkbox>
+                <mat-checkbox id="admincheck" [(ngModel)]="userdata.isAdmin" name="isAdmin" #name="ngModel" [(ngModel)]="user.isAdmin">Check me!</mat-checkbox>
             </div>
             <div class="form-group">
                 <h6>Staff User</h6>
-                <mat-checkbox id="staffcheck" name="isStaff" #name="ngModel" [(ngModel)]="user.isStaff">Check me!</mat-checkbox>
+                <mat-checkbox id="staffcheck" [(ngModel)]="userdata.isStaff" name="isStaff" #name="ngModel" [(ngModel)]="user.isStaff">Check me!</mat-checkbox>
             </div>
             <div class="form-group">
-                <label for="exampleInputFile" class="bmd-label-floating">File input</label>
+                <label class="bmd-label-floating">File input</label>
                 <input type="file" class="form-control-file" id="InputFile">
             </div>
-            
-           
-           
             <div class="col ">
-                <button mat-raised-button class="botones" color="primary">Guardar</button>
+                <button mat-raised-button class="botones" color="primary" (click)="addNewUser(userForm)">Editar</button>
                 <button mat-stroked-button class="botones" routerLink="/visualizarusuarios" routerLinkActive="active">Cancelar</button>
-                <button mat-stroked-button class="botones" (click)="resetForm(userForm)" color="warn" >Limpiar</button>
-              
+                <button mat-stroked-button class="botones" (click)="resetForm(userForm)" color="warn" >Limpiar</button>    
             </div>
         </form>
     </mat-card>

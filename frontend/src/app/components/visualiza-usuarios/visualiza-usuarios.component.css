@@ -1,0 +1,44 @@
+
+.addicon{
+    color: #E0DED8;
+}
+
+.caddicon{
+    background-color: #003F72 !important;
+    margin-left: 49%;
+}
+
+.editicon{
+    color: #E0DED8;
+}
+
+.cediticon{
+    background-color: #EAAB00 !important;
+    margin-left: 30px;
+    
+}
+.deleteicon{
+    color: #E0DED8;
+}
+
+.cdeleteicon{
+    background-color: #A71930 !important;
+    margin-left: 15px;
+}
+
+.tarjetauser{
+    width: 75%;
+    margin-left: 12%;
+    background-color: whitesmoke !important;
+    margin-bottom: 5px;
+}
+
+#adduser{
+    margin-bottom: 15px;
+} 
+.vuser{
+    width: 100%;
+    height: 100%;
+    background-color: #E0DED8;
+
+}

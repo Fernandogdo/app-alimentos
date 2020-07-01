@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 // const multer = require('../libs/multer');
 const alimento = require('../controllers/alimento.controller');
+const auth = require('../controllers/authentication.controller');
 // const multer = require('multer');
 // const uuid = require('uuid');
 // const path = require('path');
@@ -19,7 +20,7 @@ const alimento = require('../controllers/alimento.controller');
 
 
 router.get('/', alimento.getAlimentos);
-router.post('/', alimento.creaAlimento);
+router.post('/', [auth.verifyToken, auth.validateRol_User], alimento.creaAlimento);
 router.get('/:id', alimento.getAlimento);
 router.get('/buscar/:id', alimento.seleccionaAlimento);
 router.put('/:id', alimento.editAlimento);

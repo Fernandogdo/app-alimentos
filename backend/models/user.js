@@ -10,8 +10,7 @@ const UserSchema = new Schema({
     password: { type: String, required: true},
     isAdmin: { type: Boolean, default: false},
     isStaff: { type: Boolean, default: false},
-    //rol: { type: Schema.ObjectId, ref:"Rol", required: false}
-    //img: {data: Buffer, contentType: String required: false }
+    imagen: {type: String, required: false }
 });
 
 module.exports = mongoose.model('User', UserSchema);
