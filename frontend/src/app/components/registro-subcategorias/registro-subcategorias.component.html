@@ -34,7 +34,6 @@
 <div class="container">
   <mat-card class="example-card" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
     <div class="float-right">
-      
       <button class="float-right" id="botones" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
         <mat-icon>delete</mat-icon>
       </button>
@@ -44,11 +43,12 @@
       <button class="float-right" id="botones" mat-fab color="primary"  [routerLink]="['/registroalimento/', subcategory._id]">
         <mat-icon>addchart</mat-icon>
       </button>
-      
-
     </div>
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar>
+        <img src="" class="header-image" [alt]="subcategory.name">
+      </div>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
       <mat-card-title class="col text-center">{{subcategory.name}}</mat-card-title>
       <!-- <mat-card-subtitle> {{subcategory.categoria}} </mat-card-subtitle> -->
     </mat-card-header>
