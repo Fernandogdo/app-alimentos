@@ -12,7 +12,7 @@ app.set('port', process.env.PORT || 3000);
 // Middlewares-Muestra las respuestas del servidor
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors());
 
 
 // Routes of API
@@ -25,6 +25,9 @@ app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 
 app.use('/api/alimentos', require('./routes/alimentos.routes'));
 
+// Make Images "Uploads" Folder Publicly Available
+
+app.use('/public', express.static('public'));
 //Folder for public files
 // app.use('/uploads', express.static(path.resolve('uploads')));
 
