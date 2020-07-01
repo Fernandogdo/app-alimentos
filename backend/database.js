@@ -8,7 +8,7 @@ mongoose.connect(URI, { useNewUrlParser: true })
     .catch(err=> console.error(err));
 
 // mongoose.connect(URI)
-//     .then(db => console.log('DB is connected'))
+//     .then(db => console.log('DB igits connected'))
 //     .catch(err=> console.error(err));
 
 module.exports = mongoose;
