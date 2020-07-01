@@ -37,6 +37,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ModalEditCategoriaComponent } from './components/modal-edit-categoria/modal-edit-categoria.component';
 
 
 @NgModule({
@@ -50,9 +51,10 @@ import { ProfileComponent } from './components/profile/profile.component';
     VisualizaAlimentoComponent,
     LoginComponent,
     RegistroUsuariosComponent,
-    ProfileComponent
+    ProfileComponent,
+    ModalEditCategoriaComponent
   ],
-  entryComponents:[ModalSubcategoriaComponent],
+  entryComponents:[ModalSubcategoriaComponent, ModalEditCategoriaComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
