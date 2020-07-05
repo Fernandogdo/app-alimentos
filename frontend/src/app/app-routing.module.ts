@@ -7,21 +7,30 @@ import { RegistroSubcategoriasComponent } from './components/registro-subcategor
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
+import { EditaAlimentoComponent } from './components/edita-alimento/edita-alimento.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+
 
 const routes: Routes = [
-  {path:'', component: LoginComponent},
-  {path:'dashboard', component: DashboardComponent},
-  {path:'registroalimento', component: RegistroAlimentosComponent},
-  {path: 'registrosubcategoria', component: RegistroSubcategoriasComponent},
-  {path: 'registrousuario', component: RegistroUsuariosComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path:'registroalimento/:id', component: RegistroAlimentosComponent},
-  {path: 'registrosubcategoria/:id', component: RegistroSubcategoriasComponent},
-  {path: 'visualiza/:id', component: VisualizaAlimentoComponent}
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' }
+  // { path: 'sidenav', component: SidenavComponent },
+  // { path: 'dashboard', component: DashboardComponent },
+  // { path: 'registroalimento', component: RegistroAlimentosComponent },
+  // { path: 'registrosubcategoria', component: RegistroSubcategoriasComponent },
+  // { path: 'registrousuario', component: RegistroUsuariosComponent },
+  // { path: 'profile', component: ProfileComponent },
+  // { path: 'registroalimento/:id', component: RegistroAlimentosComponent },
+  // { path: 'registrosubcategoria/:id', component: RegistroSubcategoriasComponent },
+  // { path: 'visualiza/:id', component: VisualizaAlimentoComponent },
+  // { path: 'edita-alimento/:id', component: EditaAlimentoComponent }
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const APP_ROUTES = RouterModule.forRoot( routes, { useHash: false } );
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes),],
+//   exports: [RouterModule]
+// })
+// export class AppRoutingModule { }

@@ -25,14 +25,11 @@ app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 
 app.use('/api/alimentos', require('./routes/alimentos.routes'));
 
-// Make Images "Uploads" Folder Publicly Available
-
-app.use('/public', express.static('public'));
 //Folder for public files
-// app.use('/uploads', express.static(path.resolve('uploads')));
+
+app.use('/backend/uploads', express.static('backend/uploads'));
 
 //Starting the server
 app.listen(app.get('port'), ()=> {
     console.log('Server on port', app.get('port'));
 });
-

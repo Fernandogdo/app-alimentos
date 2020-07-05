@@ -21,11 +21,11 @@ export class CategoriaAlimentoService {
     return this.http.get(this.URL);
   }
 
-  postCategory(name: string, description: string, img: File){
+  postCategory(name: string, description: string, upload: File){
     var formData: any = new FormData();
     formData.append('name', name);
     formData.append('description', description);
-    formData.append('img', img);
+    formData.append('upload', upload);
 
     return this.http.post(this.URL, formData, {
       reportProgress: true,
@@ -33,15 +33,18 @@ export class CategoriaAlimentoService {
     });
   }
 
+  getCategoria(id){
+    return this.http.get(this.URL + id)
+  }
   // postCategory(category: CategoriaAlimento):Observable<any> {
   //   return this.http.post<CategoriaAlimento>(this.URL, category );
   // }
 
-  putCategory(id: string, name: string, description: string, img: File) {
+  putCategory(id: string, name: string, description: string, upload: File) {
     var formData: any = new FormData();
     formData.append('name', name);
     formData.append('description', description);
-    formData.append('img', img);
+    formData.append('upload', upload);
     return this.http.put(this.URL + id, formData);
   }
 

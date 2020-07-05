@@ -30,8 +30,8 @@
 /*Imagen*/
 
 .preview {
-    width: 250px;
-    height: 200px;
+    width: 80%;
+    height: 50%;
     display: block;
     margin: auto;
 }

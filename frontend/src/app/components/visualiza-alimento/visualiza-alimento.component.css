@@ -1,32 +1,59 @@
-.container{
+.container {
     margin-top: 30px;
     margin-bottom: 30px;
     /* margin: auto; */
-  }
-  
+}
+
+.container h2 {
+    color: rgb(0, 63, 114);
+}
 
 .example-form {
     min-width: 150px;
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
 }
 
-/* #formulario{
-    min-width: 150px;
-    max-width: 350px;
-} */
+#tarjeta-alimento {
+    background: rgb(234, 171, 0);
+}
+
+.titulo-propiedad {
+    color: rgb(0, 63, 114);
+}
+
+
+/*IMagen */
+
+.header-image {
+    width: 70px;
+    height: 60px;
+    background-size: cover;
+    border-radius: 45%;
+}
 
 .example-full-width {
     width: 100%;
 }
-  
+
 .example-card {
     max-width: 100%;
     margin-top: 25px;
 }
 
-#botones{
+
+/* #botones {
     margin-left: 20px !important;
+} */
+
+#boton-editar {
+    margin-left: 20px !important;
+    background: rgb(179, 171, 148);
+}
+
+#boton-borrar {
+    margin-left: 20px !important;
+    background: rgb(167, 25, 48);
 }
 
 #boton {

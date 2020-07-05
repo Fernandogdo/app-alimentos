@@ -36,22 +36,21 @@ export class DashboardComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      img: [null]
+      imagen: [null]
     })
   }
 
   ngOnInit() {
     this.getCategories();
   }
-
   
   //Preview Image
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({
-      img: file
+      imagen: file
     });
-    this.form.get('img').updateValueAndValidity()
+    this.form.get('imagen').updateValueAndValidity()
 
     // File Preview
     const reader = new FileReader();
@@ -62,13 +61,11 @@ export class DashboardComponent implements OnInit {
   }
 
   submitForm(formData: any, formDirective: NgForm) {
-      if (!this.form.value.img) {
-        window.alert('Ingresa la Imagen!')
-      } else {
+        console.log(this.form.value.imagen);
         this.categoriaAlimentoService.postCategory(
           this.form.value.name,
           this.form.value.description,
-          this.form.value.img
+          this.form.value.imagen
         )
           .subscribe(res => {
             // console.log(res)
@@ -76,21 +73,15 @@ export class DashboardComponent implements OnInit {
               duration: 2000,
             });
             this.resetForm(formDirective);
-            // this.form.markAsPristine();
-            // this.form.markAsUntouched();
-            this.form.value.img = [null];
             this.getCategories();
-          });
-      }
+          }); 
   }
 
   //Get Categories
   getCategories() {
     this.categoriaAlimentoService.getCategories() //Trae Categorias 
       .subscribe((res) => {
-        // this.categoriaAlimentoService.categories = res as CategoriaAlimento[];
         this.Categorias = res as CategoriaAlimento[];
-        // console.log(res);
       })
   }
 
@@ -108,6 +99,7 @@ export class DashboardComponent implements OnInit {
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
+      this.preview = null;
       this.categoriaAlimentoService.selectedCategory = new CategoriaAlimento();
     }
   }

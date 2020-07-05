@@ -19,7 +19,8 @@ export class Alimento {
         kilocalorias = '',
         glucidos = '',
         proteinas = '',
-        lipidos = ''
+        lipidos = '',
+        imagen = ''
 
     ){
 
@@ -43,6 +44,7 @@ export class Alimento {
         this.glucidos = glucidos;
         this.proteinas = proteinas;
         this.lipidos = lipidos;
+        this.imagen = imagen;
 
     }
     _id?: string;
@@ -65,5 +67,6 @@ export class Alimento {
     glucidos: string;
     proteinas?: string;
     lipidos?: string;
+    imagen?: string;
 
 }

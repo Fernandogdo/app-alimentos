@@ -1,5 +1,4 @@
 import { SubcategoriaAlimentoService } from './../../services/subcategoria-alimento.service';
-import { ModalSubcategoriaComponent } from './../modal-subcategoria/modal-subcategoria.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
@@ -8,6 +7,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThrowStmt } from '@angular/compiler';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalEditSubcategoriaComponent } from '../modal-edit-subcategoria/modal-edit-subcategoria.component';
 
 @Component({
   selector: 'app-registro-subcategorias',
@@ -16,11 +17,13 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class RegistroSubcategoriasComponent implements OnInit {
 
-  dialogRoom: MatDialogRef<ModalSubcategoriaComponent>;
   // dialogRoom1: MatDialogRef<ModalPinComponent>;
   // subcategorias: Observable<SubcategoriaAlimento[]>;
+  dialogEditSubCategoria: MatDialogRef<ModalEditSubcategoriaComponent>;
+  preview: string;
+  form: FormGroup;
   idCategoria;
-  _id:string;
+  _id: string;
   name: string = "";
 
   // subcategoria = {} as SubcategoriaAlimento;
@@ -30,8 +33,15 @@ export class RegistroSubcategoriasComponent implements OnInit {
     private _snackBar: MatSnackBar,
     public dialog: MatDialog,
     public dialog2: MatDialog,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    public fb: FormBuilder,
+  ) {
+    // Reactive Form
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      imagen: [null, Validators.required]
+    })
+  }
 
   ngOnInit() {
     this.idCategoria = this.route.snapshot.params['id'];
@@ -40,49 +50,71 @@ export class RegistroSubcategoriasComponent implements OnInit {
     // this.obtenerIdCategoria();
   }
 
-  ModalSubcategoria() {
-    this.dialogRoom = this.dialog.open(ModalSubcategoriaComponent);
-  }
+  uploadFile(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({
+      imagen: file
+    });
+    this.form.get('imagen').updateValueAndValidity()
 
-
-  // obtenerIdCategoria(){
-  //   this.idCategoria = this.route.snapshot.params['id'];
-  //   console.log('IDCATEGROAI:', this.idCategoria)
-  // }
-
-
-  addSubCategory(form: NgForm) {
-    if (form.value._id) {
-      this.subcategoriaAlimentoService.putSubCategory(form.value)
-        .subscribe(res => {
-          console.log(res);
-          this.subcategoriaAlimentoService.selectedsubCategory._id='';
-          this.subcategoriaAlimentoService.selectedsubCategory.name='';
-          this._snackBar.open("Sub Categoria Actualizada", "Cerrar", {
-            duration: 2000,
-          });
-          this.getSubCategories();
-         
-        })
-        
-    } else {
-      // const name = form.value.name;
-
-      // console.log(name);
-      this.subcategoriaAlimentoService.postSubCategory(form.value)
-        .subscribe((nuevaRetroalimentacion) => {
-          console.log(nuevaRetroalimentacion);
-          console.log('se guardo');
-          this.subcategoriaAlimentoService.selectedsubCategory.name='';
-          this._snackBar.open("Sub Categoria Agregada", "Cerrar", {
-            duration: 2000,
-          });
-          this.getSubCategories();
-          // this.subcategoriaAlimentoService.selectedsubCategory.name='';
-        });
-        this.getSubCategories(); 
+    // File Preview
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview = reader.result as string;
     }
+    reader.readAsDataURL(file)
   }
+
+  addSubCategory(formData: any, formDirective: NgForm) {
+    console.log(this.form.value.imagen);
+    console.log('SUBCATEGORIA', this.form.value.name);
+    console.log('CATEGORIAID', this.idCategoria);
+    this.subcategoriaAlimentoService.postSubCategory(
+      this.form.value.name,
+      this.idCategoria,
+      this.form.value.imagen
+    )
+      .subscribe(res => {
+        // console.log(res)
+        this._snackBar.open("Categoria Agregada", "Cerrar", {
+          duration: 2000,
+        });
+        this.resetForm(formDirective);
+        this.getSubCategories();
+      });
+  }
+
+
+
+
+  // addSubCategory(form: NgForm) {
+  //   if (form.value._id) {
+  //     this.subcategoriaAlimentoService.putSubCategory(form.value)
+  //       .subscribe(res => {
+  //         console.log(res);
+  //         this.subcategoriaAlimentoService.selectedsubCategory._id='';
+  //         this.subcategoriaAlimentoService.selectedsubCategory.name='';
+  //         this._snackBar.open("Sub Categoria Actualizada", "Cerrar", {
+  //           duration: 2000,
+  //         });
+  //         this.getSubCategories();
+
+  //       })
+
+  //   } else {
+  //     this.subcategoriaAlimentoService.postSubCategory(form.value)
+  //       .subscribe((nuevaRetroalimentacion) => {
+  //         console.log(nuevaRetroalimentacion);
+  //         console.log('se guardo');
+  //         this.subcategoriaAlimentoService.selectedsubCategory.name='';
+  //         this._snackBar.open("Sub Categoria Agregada", "Cerrar", {
+  //           duration: 2000,
+  //         });
+  //         this.getSubCategories();
+  //       });
+  //       this.getSubCategories(); 
+  //   }
+  // }
 
   getSubCategories() {
     this.subcategoriaAlimentoService.getSubCategory(this.idCategoria) //Toma el valor del empleado 
@@ -90,7 +122,7 @@ export class RegistroSubcategoriasComponent implements OnInit {
         console.log(res)
         this.subcategoriaAlimentoService.subcategories = res as SubcategoriaAlimento[];
       });
-    console.log("ID CAT:", this.idCategoria)
+    // console.log("ID CAT:", this.idCategoria)
   }
 
 
@@ -109,12 +141,25 @@ export class RegistroSubcategoriasComponent implements OnInit {
       });
   }
 
+  ModalEditSubCategoria(idSubcategoria, name, idCategoria, img){
+    this.dialogEditSubCategoria = this.dialog.open(ModalEditSubcategoriaComponent, {
+      data: {
+        idSubcategoria: idSubcategoria,
+        name: name,
+        idCategoria: idCategoria,
+        img: img
+      }
+    });
+    this.dialogEditSubCategoria.afterClosed().subscribe(()=> {
+      this.getSubCategories();
+    });
+  }
 
   //Reset Form
   resetForm(data) {
-    
-      data.reset();
-      this.subcategoriaAlimentoService.selectedsubCategory = new SubcategoriaAlimento();
-    }
-  
+
+    data.reset();
+    this.subcategoriaAlimentoService.selectedsubCategory = new SubcategoriaAlimento();
+  }
+
 }

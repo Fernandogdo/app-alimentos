@@ -24,24 +24,59 @@ export class SubcategoriaAlimentoService {
   //   return this.http.get(this.URL);
   // }
 
+  postSubCategory(name: string, categoria: string, upload: File){
+    var formData: any = new FormData();
+    formData.append('name', name);
+    formData.append('categoria', categoria);
+    formData.append('upload', upload);
+
+    return this.http.post(this.URL, formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
   //Add subcategoria
-  postSubCategory(subCategory: SubcategoriaAlimento) {
-    return this.http.post(this.URL, subCategory );
+  // postSubCategory(name: string, categoria: string, upload: File){
+  //   var formData: any = new FormData();
+  //   formData.append('name', name);
+  //   formData.append('categoria', categoria);
+  //   formData.append('upload', upload);
+
+  //   return this.http.post(this.URL, formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   });
+  // }
+
+  //Trae data de SubCategoria por id de Subcategoria
+  getOneSubCategoria(id){
+    return this.http.get(this.URL + id)
   }
 
-  //Trae SUbCategoria por id de categoria
+  //Trae SubCategoria por id de categoria, solo las que pertenecen a esa categoria
   getSubCategory(categoria): Observable<any> {
     return this.http.get(this.URL_Buscar + categoria );
   }
 
-  putSubCategory(subcategory: SubcategoriaAlimento){
-    return this.http.put(this.URL + `${subcategory._id}`, subcategory)
+
+  //Edita Sub Categoria
+  putSubCategory(idSubcategoria: string, name: string, categoria: string, upload: File) {
+    var formData: any = new FormData();
+    formData.append('name', name);
+    formData.append('categoria', categoria);
+    formData.append('upload', upload);
+    console.log('IDSUBSERVI', idSubcategoria);
+    console.log('NAMESERVI', name);
+    console.log('IDCATSERVI', categoria);
+    return this.http.put(this.URL + idSubcategoria, formData);
+    
   }
+
+  // putSubCategory(name: string, categoria: string, upload: File){
+  //   return this.http.put(this.URL + `${subcategory._id}`, subcategory)
+  // }
 
   deleteSubCategory(_id: string){
     return this.http.delete(this.URL + _id);
   }
-
-
-  
 }
