@@ -13,8 +13,7 @@
 }
 
 .cediticon{
-    background-color: #EAAB00 !important;
-    margin-left: 30px;
+    background-color: rgb(129, 119, 88)  !important;
     
 }
 .deleteicon{
@@ -26,11 +25,19 @@
     margin-left: 15px;
 }
 
+#content{
+    height: fit-content;
+}
+
 .tarjetauser{
-    width: 75%;
-    margin-left: 12%;
-    background-color: whitesmoke !important;
-    margin-bottom: 5px;
+    
+    width: 90%;
+    background-color: #EAAB00 !important;
+    margin-bottom: 10px;
+}
+
+.userN{
+    color: #003F72 ;
 }
 
 #adduser{
@@ -38,7 +45,7 @@
 } 
 .vuser{
     width: 100%;
-    height: 100%;
-    background-color: #E0DED8;
+    height: fit-content;
+    background-color: white;
 
 }

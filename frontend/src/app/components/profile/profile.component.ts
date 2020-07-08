@@ -17,15 +17,22 @@ export class ProfileComponent implements OnInit {
   idUser;
   ngOnInit() {
     // this.idUser = this.route.snapshot.params['id'];
-    this.idUser = '5ef76d79fa11c42ed86912b9';
+    this.idUser = localStorage.getItem('userid');
     this.getprofieinformation();
   }
 
   getprofieinformation() {
     this.userService.getOneUser(this.idUser)
       .subscribe(res => {
-        this.img_src = "../../../assets/no-img.jpg";
+        console.log(res)
+        
+        
         this.profiledata =  res;
+        if (this.profiledata.imagen == null || this.profiledata.imagen == "") {
+          this.img_src = "../../../assets/no-img.jpg";
+        }else{
+          this.img_src = this.profiledata.imagen;
+        }
       });
 
   }

@@ -37,7 +37,7 @@ const upload = multer({
 
 });
 
-uploadCtrl.cargarImagen = [upload.single('chch'), function (req, res, next) {
+uploadCtrl.cargarImagen = [upload.single('upload'), function (req, res, next) {
   try {
     var img = req.file;
     console.log("test2 ", img);

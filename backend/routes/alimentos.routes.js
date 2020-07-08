@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 // const multer = require('../libs/multer');
 const alimento = require('../controllers/alimento.controller');
-const auth = require('../controllers/authentication.controller');
+const upload = require('../controllers/uploadimage.controller');
+
 // const multer = require('multer');
 // const uuid = require('uuid');
 // const path = require('path');
@@ -20,10 +21,10 @@ const auth = require('../controllers/authentication.controller');
 
 
 router.get('/', alimento.getAlimentos);
-router.post('/', [auth.verifyToken, auth.validateRol_User], alimento.creaAlimento);
+router.post('/', [upload.cargarImagen], alimento.creaAlimento);
 router.get('/:id', alimento.getAlimento);
 router.get('/buscar/:id', alimento.seleccionaAlimento);
-router.put('/:id', alimento.editAlimento);
+router.put('/:id', [upload.cargarImagen], alimento.editAlimento);
 router.delete('/:id', alimento.deleteAlimento);
 
 module.exports = router;    

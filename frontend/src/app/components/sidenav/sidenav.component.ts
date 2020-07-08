@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ValidationsService } from 'src/app/services/validations.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -12,7 +14,8 @@ export class SidenavComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    private valideS:ValidationsService, private route: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -24,6 +27,11 @@ export class SidenavComponent implements OnInit {
 
   shouldRun = true;
   ngOnInit() {
+  }
+
+  salir(){
+    this.valideS.logout();
+    this.route.navigate(['/login']);
   }
 
 }

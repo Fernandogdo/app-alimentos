@@ -25,3 +25,9 @@
     letter-spacing:1px; 
     text-align:center; 
 }
+
+#btnIngresar{
+	background-color: #EAAB00;
+	color: #003F72;
+	border-radius: 5px;
+}

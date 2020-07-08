@@ -12,6 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class VisualizaUsuariosComponent implements OnInit {
   private usersdata = [] as User;
+  rol1: String;
+  rol2: String;
 
   constructor(private userService: UsersService,
     private _snackBar: MatSnackBar,
@@ -26,14 +28,15 @@ export class VisualizaUsuariosComponent implements OnInit {
       .subscribe(res => {
         this.usersdata =  res;
         console.log(res);
+        
+    
       });
-
   }
 
   deleteuserinformation(userid) {
     this.userService.deleteUser(userid)
       .subscribe(res => {
-        this._snackBar.open("Sub Categoria Eliminada", "Cerrar", {
+        this._snackBar.open("User Eliminado", "Cerrar", {
           duration: 2000,
         });
         this.getusersinformation();

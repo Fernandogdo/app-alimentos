@@ -18,10 +18,10 @@ export class LoginComponent implements OnInit {
   signIn(){
     this.loginService.checkinformation(this.user)
     .subscribe(res => {
-      //this.loginService = res as SubcategoriaAlimento[];
-     
-      // console.log(res);
+      //this.loginService = res as SubcategoriaAlimento[]; 
+      console.log(res);
       localStorage.setItem('userid', res.usuario._id);
+      localStorage.setItem('usuario', res.usuario.name +' '+ res.usuario.lastname);
       localStorage.setItem('token',res.token);
       this.route.navigate(['/dashboard']);
     });  

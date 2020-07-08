@@ -11,15 +11,18 @@ subcategoriaCtrl.getsubCategorias = async (req, res) => {
 //     res.json(alimentos);
 // }
 
-subcategoriaCtrl.createSubCategoria = async (req, res) =>{
+subcategoriaCtrl.createSubCategoria = async (req, res) => {
+    if (req.imagen === undefined) { 
+        req.imagen = null 
+    } 
+
     const subcategoria = new SubCategoria({
         name: req.body.name,
-        categoria: req.body.categoria
+        categoria: req.body.categoria,
+        imagen: req.imagen
     });
     await subcategoria.save();
-    res.json({
-        status: 'SubCategoria saved'
-    });
+    res.json({ status: 'SubCategoria saved' });
 }
 
 //Get One Aliment
@@ -28,34 +31,51 @@ subcategoriaCtrl.getsubCategoria = async (req, res) => {
     res.json(subcategoria);
 }
 
-
-// categoriaCtrl.editsubCategoria= async (req, res) =>{
+// categoriaCtrl.editCategoria = async (req, res) => {
 //     const { id } = req.params;
-//     const subcategoria = {
+    
+//     const categoriaIMG = await Categoria.findById(req.params.id);
+
+//     if (req.imagen === undefined) { 
+//         req.imagen = categoriaIMG.imagen
+//     } 
+
+//     const categoria = {
 //         name: req.body.name,
-//         description: req.body.description
+//         description: req.body.description,
+//         imagen: req.imagen
 //     }
-//     await Categoria.findByIdAndUpdate(id, {$set: categoria}, {new: true}); //Find data for id and update por alimento
-//     res.json({status: 'Categoria updated'});
+
+//     await Categoria.findByIdAndUpdate(id, { $set: categoria }, { useFindAndModify: false }); //Find data for id and update por alimento
+//     res.json({ status: 'Categoria updated' });
 // }
 
-subcategoriaCtrl.editsubCategoria= async (req, res) =>{
+subcategoriaCtrl.editsubCategoria = async (req, res) => {
     const { id } = req.params;
+
+    const subcategoriaIMG = await SubCategoria.findById(req.params.id); 
+
+    if (req.imagen === undefined) { 
+        req.imagen = subcategoriaIMG.imagen
+    } 
+
     const subcategoria = {
-        name: req.body.name
+        name: req.body.name,
+        imagen: req.imagen
     }
-    await SubCategoria.findByIdAndUpdate(id, {$set: subcategoria}, {new: true}); //Find data for id and update por alimento
-    res.json({status: 'SubCategoria updated'});
+
+    await SubCategoria.findByIdAndUpdate(id, { $set: subcategoria }, { useFindAndModify: false }); //Find data for id and update por alimento
+    res.json({ status: 'SubCategoria updated' });
 }
 
-subcategoriaCtrl.deletesubCategoria = async (req, res) =>{
+subcategoriaCtrl.deletesubCategoria = async (req, res) => {
     await SubCategoria.findByIdAndRemove(req.params.id);
-    res.json({status: 'SubCategoria deleted'});
+    res.json({ status: 'SubCategoria deleted' });
 }
 
 subcategoriaCtrl.seleccionaSubcategoria = async (req, res) => {
     const categoriaa = req.params.id;
-    const aaa = await SubCategoria.find({ categoria: categoriaa});
+    const aaa = await SubCategoria.find({ categoria: categoriaa });
     res.json(aaa);
 }
 

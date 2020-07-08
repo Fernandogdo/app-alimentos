@@ -12,3 +12,10 @@ margin-left: 40%;
 .example-full-width {
   width: 100%;
 }
+
+.preview{
+  width: 75%;
+  height: 230px;
+  margin-left: 12%;
+  border-radius: 6px;
+}

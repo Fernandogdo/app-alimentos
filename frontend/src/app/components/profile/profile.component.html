@@ -1,42 +1,37 @@
-<div class="conteiner">
-    <mat-card class="tarjeta" >
+<div id="profile">
+<div class="container">
+    <mat-card class="tarjeta">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="profile-img">
-                    <img src="{{img_src}}"  alt="" />
-
+                    <img src="{{img_src}}" alt="" />
                 </div>
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <mat-card-title class="col">{{profiledata.username}}</mat-card-title>
 
                 <div class="row">
-                    <div class="col-md-2">
-                        <label>Name</label>
-                    </div>
-                    <div class="col-md-6">
-                        <p>{{profiledata.name}} {{profiledata.lastname}}</p>
-                    </div>
+                    <span class="font-weight-bold">Nombre: </span>
+
+                    <span class="userN"> {{profiledata.name}} {{profiledata.lastname}}</span>
+
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
-                        <label>Email</label>
-                    </div>
-                    <div class="col-md-6">
-                        <p>{{profiledata.email}}</p>
-                    </div>
-                </div >
-                <div class="row">
+                    <span class="font-weight-bold">Email: </span>
+                    <span class="userN"> {{profiledata.email}}</span>
+                </div>
+                <div class="row" id="btnButtons">
                     <mat-card-actions>
-                        <button mat-flat-button id="btnEditar">Editar perfil</button>
+                        <button mat-flat-button id="btnEditar" [routerLink]="['/editaprofile/', idUser]">Editar
+                            perfil</button>
                     </mat-card-actions>
                 </div>
 
             </div>
         </div>
 
-
-       
     </mat-card>
+</div>
+
 </div>

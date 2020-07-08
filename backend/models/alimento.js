@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 var SubCategoria = mongoose.model('SubCategoria');
 
 const AlimentoSchema = new Schema({
+    subcategoria: { type: Schema.ObjectId, ref:"SubCategoria", required: true},
     autor: { type: String, required: true},
     fecha: { type: String, required: true},
     categoria: { type: String, required: true},
@@ -24,7 +25,7 @@ const AlimentoSchema = new Schema({
     proteinas: {type: String, required: false},
     // imagePath: {type: String, required: true},
     lipidos: {type: String, required: false},
-    subcategoria: { type: Schema.ObjectId, ref:"SubCategoria", required: true}
+    imagen: { type: String, required: false},
 });
 
 module.exports = mongoose.model('Alimento', AlimentoSchema);

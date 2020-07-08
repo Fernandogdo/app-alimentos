@@ -1,65 +1,112 @@
 <hr color="blue" size=2>
 
 <div class="container">
-  <h2>Subcategoria de Alimentos</h2>
-  <!-- <div class="col text-center" id="boton">
-        <button mat-raised-button class="botones" color="primary" (click)=" ModalSubcategoria()">Agregar Subcategoria</button>
-    </div> -->
+    <h2>
+        <strong>
+          Subcategoría de Alimentos
+        </strong>
+    </h2>
 </div>
 
+
 <div class="container" id="formulario">
-  <mat-card class="example-card">
 
-    <!-- Formulario SubCategorias -->
-    <form #subcategoryForm="ngForm" class="example-form" (ngSubmit)="addSubCategory(subcategoryForm)">
-      <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="subcategoriaAlimentoService.selectedsubCategory._id">
-      <mat-form-field class="example-full-width">
-        <mat-label>Nombre Sub Categoria</mat-label>
-        <input type="text" matInput name="name" #name="ngModel"
-          [(ngModel)]="subcategoriaAlimentoService.selectedsubCategory.name" placeholder="Ingrese Sub Categoria">
-      </mat-form-field>
-      <mat-form-field class="invisible">
-        <mat-label>IdCategoria</mat-label>
-        <input type="text" matInput name="categoria" #name="ngModel" [(ngModel)]="idCategoria"
-          placeholder="Ingrese Sub Categoria">
-      </mat-form-field>
+    <table>
 
-      <div class="col text-center">
-        <button mat-raised-button  color="primary">Agregar</button>
-      </div>
-    </form>
-  </mat-card>
+    </table>
+    <mat-card class="example-card">
+        <form [formGroup]="form" #subcategoryForm="ngForm" (ngSubmit)="addSubCategory(form, subcategoryForm)">
+            <!-- ID CATEGORIA -->
+            <input type="hidden" value="{{idCategoria}}">
+            <div class="progress form-group" *ngIf="subcategoriaAlimentoService.percentDone">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="categoriaAlimentoService.percentDone">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="preview" *ngIf="preview && preview !== null">
+                    <img [src]="preview" class="preview">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="file" name="upload" (change)="uploadFile($event)">
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre Sub Categoria</mat-label>
+                <input type="text" matInput formControlName="name" placeholder="Ingrese Sub Categoria">
+            </mat-form-field>
+
+            <div class="col text-center">
+                <button mat-raised-button class="botones" color="primary" [disabled]='!form.valid'>Agregar</button>
+            </div>
+        </form>
+    </mat-card>
 </div>
 
 <div class="container">
-  <mat-card class="example-card" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
-    <div class="float-right">
-      
-      <button class="float-right" id="botones" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
+    <!-- <mat-grid-list class="grid-lista" cols="2" rowHeight="2:1"> -->
+    <!-- <mat-grid-tile *ngFor="let subcategory of subcategoriaAlimentoService.subcategories"> -->
+    <mat-card class="example-card" id="tarjeta-subcategoria" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
+        <div class="float-right">
+            <button class="float-right" id="boton-borrar" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            <button class="float-right" id="boton-editar" (click)="ModalEditSubCategoria(subcategory._id, subcategory.name, idCategoria, subcategory.imagen)" mat-fab color="accent">
+                <mat-icon>create</mat-icon>
+              </button>
+
+            <button class="float-right" id="boton-agregar" mat-fab color="primary" [routerLink]="['/registroalimento/', subcategory._id]">
+                <mat-icon>addchart</mat-icon>
+              </button>
+        </div>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img src="{{subcategory.imagen}}" class="header-image" [alt]="subcategory.name">
+            </div>
+
+            <mat-card-title class="col text-center" id="tituloSubcategoria">{{subcategory.name}}</mat-card-title>
+            <!-- ID SUBCATEGORIA -->
+            <input type="hidden" value="{{subcategory._id}}">
+        </mat-card-header>
+        <br>
+        <mat-card-actions>
+            <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]">
+                <mat-icon>visibility</mat-icon>
+              </button>
+        </mat-card-actions>
+    </mat-card>
+    <!-- </mat-grid-tile>
+
+    </mat-grid-list> -->
+
+    <!-- <mat-card class="example-card" id="tarjeta-subcategoria" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
+        <div class="float-right">
+            <button class="float-right" id="boton-borrar" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
         <mat-icon>delete</mat-icon>
       </button>
-      <button class="float-right" id="botones" (click)="editSubCategory(subcategory)" mat-fab color="accent">
+            <button class="float-right" id="boton-editar" (click)="ModalEditSubCategoria(subcategory._id, subcategory.name, idCategoria, subcategory.imagen)" mat-fab color="accent">
         <mat-icon>create</mat-icon>
       </button>
-      <button class="float-right" id="botones" mat-fab color="primary"  [routerLink]="['/registroalimento/', subcategory._id]">
+
+            <button class="float-right" id="boton-agregar" mat-fab color="primary" [routerLink]="['/registroalimento/', subcategory._id]">
         <mat-icon>addchart</mat-icon>
       </button>
-      
+        </div>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <img src="{{subcategory.imagen}}" class="header-image" [alt]="subcategory.name">
+            </div>
 
-    </div>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title class="col text-center">{{subcategory.name}}</mat-card-title>
-      <!-- <mat-card-subtitle> {{subcategory.categoria}} </mat-card-subtitle> -->
-    </mat-card-header>
+            <mat-card-title class="col text-center" id="tituloSubcategoria">{{subcategory.name}}</mat-card-title>
 
-    <mat-card-actions>
-      <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-          <mat-icon>addchart</mat-icon>
-        </button> -->
-      <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]" >
+            <input type="hidden" value="{{subcategory._id}}">
+        </mat-card-header>
+        <br>
+        <mat-card-actions>
+            <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]">
         <mat-icon>visibility</mat-icon>
       </button>
-    </mat-card-actions>
-  </mat-card>
+        </mat-card-actions>
+    </mat-card> -->
 </div>
