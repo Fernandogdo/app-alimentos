@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.loginService.checkinformation(this.user)
     .subscribe(res => {
       //this.loginService = res as SubcategoriaAlimento[]; 
-      console.log(res);
+      // console.log(res);
       if (res.usuario.isAdmin == true || res.usuario.isStaff == true ) {
         localStorage.setItem('userid', res.usuario._id);
         localStorage.setItem('usuario', res.usuario.name +' '+ res.usuario.lastname);
