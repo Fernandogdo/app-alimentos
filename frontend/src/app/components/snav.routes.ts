@@ -20,7 +20,7 @@ import { AccessWebGuard } from '../guards/access-web.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', component: SnavComponent, children: [
-    { path: 'dashboard', component: DashboardComponent, canActivate: [LoginGuard, AccessWebGuard] },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [ AccessWebGuard, LoginGuard] },
     { path: 'registroalimento', component: RegistroAlimentosComponent , canActivate: [LoginGuard, AccessWebGuard] },
     { path: 'registrosubcategoria', component: RegistroSubcategoriasComponent , canActivate: [LoginGuard, AccessWebGuard] },
     { path: 'registrousuario', component: RegistroUsuariosComponent , canActivate: [LoginGuard, AdminGuard] },

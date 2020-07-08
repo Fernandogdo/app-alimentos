@@ -21,13 +21,14 @@ export class AccessWebGuard implements CanActivate {
   canActivate(): boolean {
     if (this.validateS.priviligies().isAdmin == true || this.validateS.priviligies().isStaff == true){
       return true;
-    } else {
-      this.route.navigate(['/login']);
+    } 
+    if(this.validateS.priviligies().isAdmin == false && this.validateS.priviligies().isStaff == false){
+      
       this._snackBar.open("No tiene acceso", "Cerrar", {
         duration: 2000,
       });
+      this.route.navigate(['/login']);
       return false;
-
     }
   }
   
