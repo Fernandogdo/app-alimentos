@@ -1,48 +1,73 @@
-
-
-/* .example-form {
+.example-form {
     min-width: 150px;
     max-width: 300px;
     width: 100%;
 }
-  
+
 .example-full-width {
     width: 100%;
-} */
+}
 
-#formulario{
+.container h2 {
+    color: rgb(0, 63, 114);
+}
+
+#formulario {
     margin-top: 40px;
 }
 
+
+/*IMagen*/
+
+.imagen {
+    text-align: center;
+}
+
+.preview {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+}
+
+
 /* tarjeta */
-.example-card{
-    background-color: rgb(255, 255, 255);
+
+.example-card {
+    /* background-color:rgb(224, 222, 216); */
     margin: 30px;
 }
+
 .example-form {
-    min-width: 250px;
+    min-width: 200px;
     max-width: 1100px;
     width: 100%;
-  }
-  
-  .example-full-width {
+}
+
+.example-full-width {
     width: 100%;
-  }
-  
-  td {
+}
+
+td {
     padding-right: 8px;
-  }
+}
 
-  /* Radio Button */
-  .mat-radio-button ~ .mat-radio-button {
+.campos {
+    /* margin-right: 10px; */
+    width: 100%;
+    /* min-width: 30%; */
+}
+
+
+/* Radio Button */
+
+.mat-radio-button~.mat-radio-button {
     margin-left: 16px;
-  }
+}
 
-  /* botones */
-  .botones{
+
+/* botones */
+
+.botones {
     margin-left: 20px !important;
-}  
-
-
-
-  
+}

@@ -1,0 +1,37 @@
+<div class="container" id="formulario">
+    <mat-card class="example-card">
+        <h3 class="titulo">
+            <strong>
+                    Actualizar SubCategoría
+            </strong>
+        </h3>
+        <form [formGroup]="form" #categoryForm="ngForm">
+            <input type="hidden" value="{{idCategoria}}">
+            <div class="progress form-group" *ngIf="subcategoriaAlimentoService.percentDone">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="subcategoriaAlimentoService.percentDone">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="preview" *ngIf="preview && preview !== null">
+                    <img [src]="preview" class="preview">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="file" (change)="uploadFile($event)">
+            </div>
+
+            <input type="hidden" value="{{idSubcategoria}}">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre Sub Categoria</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+
+            <div class="col text-center">
+                <button mat-raised-button color="primary" mat-dialog-close (click)="editSubCategory()" [disabled]='!form.valid'> Actualizar</button>
+                <button mat-raised-button class="botones" color="warn" mat-dialog-close>Cerrar</button>
+            </div>
+
+        </form>
+    </mat-card>
+</div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalSubcategoriaComponent } from './modal-subcategoria.component';
+import { EditaAlimentoComponent } from './edita-alimento.component';
 
-describe('ModalSubcategoriaComponent', () => {
-  let component: ModalSubcategoriaComponent;
-  let fixture: ComponentFixture<ModalSubcategoriaComponent>;
+describe('EditaAlimentoComponent', () => {
+  let component: EditaAlimentoComponent;
+  let fixture: ComponentFixture<EditaAlimentoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModalSubcategoriaComponent ]
+      declarations: [ EditaAlimentoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalSubcategoriaComponent);
+    fixture = TestBed.createComponent(EditaAlimentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

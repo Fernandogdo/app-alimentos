@@ -20,8 +20,9 @@ export class ModalEditCategoriaComponent implements OnInit {
   name;
   description;
   imagen
-  
-  
+  categoriaSelected;
+  oneCategoria = [] as CategoriaAlimento;
+
   Categorias: any = [];
 
   constructor(
@@ -30,13 +31,13 @@ export class ModalEditCategoriaComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { 
+  ) {
 
     // Reactive Form
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      img: [null]
+      imagen: [null]
     })
   }
 
@@ -51,22 +52,17 @@ export class ModalEditCategoriaComponent implements OnInit {
     console.log('Descripcion:', this.description);
     this.imagen = this.data.img;
     console.log('Imagen:', this.imagen);
-  }
 
-  // setValues(){
-  //   this.categoriaAlimentoService.obtenerCategoria(this.idCategoria).subscribe(res=>{
-  //     this.form.get('name').setValue(res.name)
-  //     this.form.get('description').setValue(res.description)
-  //     this.form.get('img').setValue(res.img)
-  //   })
-  // }
+    this.categoriaSelected = this.idCategoria;
+    this.getCategoria(this.categoriaSelected)
+  }
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({
-      img: file
+      imagen: file
     });
-    this.form.get('img').updateValueAndValidity()
+    this.form.get('imagen').updateValueAndValidity()
 
     // File Preview
     const reader = new FileReader();
@@ -76,70 +72,48 @@ export class ModalEditCategoriaComponent implements OnInit {
     reader.readAsDataURL(file)
   }
 
-  editCategory(){
-    // console.log(this.idCategoria);
-    // console.log(this.form.value.name);
-    console.log('FORMIMG',this.form.value.img);
-    console.log('Imagen', this.imagen);
-
-    if (this.form.value.img) {
-      // window.alert('Ingrese la Imagen');
-      this.categoriaAlimentoService.putCategory(
-        this.idCategoria,
-        this.name,
-        this.description,
-        this.form.value.img
-      )
+  getCategoria(idCategoria){
+    this.categoriaAlimentoService.getCategoria(idCategoria)
       .subscribe(res => {
-        console.log(res);
-        this._snackBar.open("Categoria Actualizada", "Cerrar", {
-          duration: 2000,
+        this.oneCategoria = res
+        this.form.patchValue({
+          name: this.oneCategoria.name,
+          description: this.oneCategoria.description,
         });
-        // this.ngOnInit()
-        // this.getCategories();
+        this.preview = this.oneCategoria.imagen;
       });
-      
-    } 
-
-    if (this.form.value.img === undefined || this.form.value.img === null ) {
-      this.categoriaAlimentoService.putCategory(
-        this.idCategoria,
-        this.form.value.name,
-        this.form.value.description,
-        this.form.value.img = this.imagen
-      )
-      .subscribe(res => {
-        console.log(res);
-        this._snackBar.open("Categoria Actualizada", "Cerrar", {
-          duration: 2000,
-        });
-        // this.ngOnInit()
-        // this.getCategories();
-      });
-    }
-    
-    
-    // else {
-    //   window.alert('Ingrese la Imagen');
-    //   this.categoriaAlimentoService.putCategory(
-    //     this.idCategoria,
-    //     this.form.value.name,
-    //     this.form.value.description,
-    //     this.form.value.img
-    //   )
-    //   .subscribe(res => {
-    //     console.log(res);
-    //     this._snackBar.open("Categoria Actualizada", "Cerrar", {
-    //       duration: 2000,
-    //     });
-    //     // this.ngOnInit()
-    //     // this.getCategories();
-    //   });
-    // }
+      this.getCategories();
   }
 
-  actualizar(){
-    this.ngOnInit();
+  editCategory() {
+    var mandarname;
+    var mandardescripcion
+
+    if (this.name != this.form.value.name) {
+      mandarname = this.form.value.name
+    } else{
+      mandarname = this.name
+    }
+
+    if (this.description != this.form.value.description) {
+      mandardescripcion = this.form.value.description
+    } else {
+      mandardescripcion = this.description
+    }
+    
+    this.categoriaAlimentoService.putCategory(
+      this.idCategoria,
+      mandarname,
+      mandardescripcion,
+      this.form.value.imagen
+    )
+      .subscribe(res => {
+        console.log(res);
+        this._snackBar.open("Categoria Actualizada", "Cerrar", {
+          duration: 2000,
+        });
+        this.getCategories();
+      });
   }
 
   getCategories() {
@@ -150,29 +124,4 @@ export class ModalEditCategoriaComponent implements OnInit {
         console.log(res);
       })
   }
-
-//   submitForm(formData: any, formDirective: NgForm) {
-//     if (!this.form.value.img) {
-//       window.alert('Ingresa la Imagen!')
-//     } else {
-//       this.categoriaAlimentoService.postCategory(
-//         this.form.value.name,
-//         this.form.value.description,
-//         this.form.value.img
-//       )
-//         .subscribe(res => {
-//           console.log(res)
-//           this._snackBar.open("Categoria Agregada", "Cerrar", {
-//             duration: 2000,
-//           });
-//           this.resetForm(formDirective);
-//           // this.form.markAsPristine();
-//           // this.form.markAsUntouched();
-//           this.form.value.img = null;
-//           this.getCategories();
-//         });
-//     }
-// }
-  
-
 }
