@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+// import { FormControl, Validators FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { UsersService } from './../../services/users.service';
 import { User } from 'src/app/models/user';
+import { ActivatedRoute, Params } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-registro-usuarios',
-  templateUrl: './registro-usuarios.component.html',
-  styleUrls: ['./registro-usuarios.component.css']
+  selector: 'app-edit-usuarios',
+  templateUrl: './edit-usuarios.component.html',
+  styleUrls: ['./edit-usuarios.component.css']
 })
-export class RegistroUsuariosComponent implements OnInit {
+export class EditUsuariosComponent implements OnInit {
   user = {} as User;
+  userdata = {} as User;
+  userselected;
   form: FormGroup;
   preview: String;
-  constructor(private userService: UsersService, public fb: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private userService: UsersService,
+    private route: ActivatedRoute,
+    public fb: FormBuilder,
+    private _snackBar: MatSnackBar) {
     this.form = this.fb.group({
       name: [''],
       lastname: [''],
@@ -29,7 +36,12 @@ export class RegistroUsuariosComponent implements OnInit {
 
   ngOnInit() {
 
+    this.userselected = this.route.snapshot.params['id'];
+    console.log(this.userselected)
+    this.getuserinformation(this.userselected)
+
   }
+
   hide = true;
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -40,6 +52,26 @@ export class RegistroUsuariosComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
+
+  getuserinformation(user_id) {
+    this.userService.getOneUser(user_id)
+      .subscribe(res => {
+        this.userdata = res;
+        console.log(res);
+        this.form.patchValue({
+          name: this.userdata.name,
+          lastname: this.userdata.lastname,
+          email: this.userdata.email,
+          username: this.userdata.username,
+          password: this.userdata.password,
+          isAdmin: this.userdata.isAdmin,
+          isStaff: this.userdata.isStaff
+        });
+
+        this.preview = this.userdata.imagen;
+      });
+  }
+
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
@@ -56,10 +88,8 @@ export class RegistroUsuariosComponent implements OnInit {
     reader.readAsDataURL(file)
   }
 
-
-  addNewUser(formData: any, formDirective: NgForm) {
-    console.log(this.form.value.imagen);
-    console.log(this.form.value.isStaff);
+  modifyUser(formData: any, formDirective: NgForm) {
+    
     if (this.form.value.isAdmin === undefined || this.form.value.isAdmin === '') {
       this.form.value.isAdmin = false;
     }
@@ -67,7 +97,9 @@ export class RegistroUsuariosComponent implements OnInit {
       this.form.value.isStaff = false;
     }
     console.log(this.form.value);
-    this.userService.postUser(
+
+    this.userService.putUser(
+      this.userselected,
       this.form.value.name,
       this.form.value.lastname,
       this.form.value.email,
@@ -80,7 +112,7 @@ export class RegistroUsuariosComponent implements OnInit {
     )
       .subscribe(res => {
         console.log(res)
-        this._snackBar.open("Usuario Agregado", "Cerrar", {
+        this._snackBar.open("Usuario Editado", "Cerrar", {
           duration: 2000,
         });
         this.resetForm(formDirective);
@@ -96,3 +128,5 @@ export class RegistroUsuariosComponent implements OnInit {
   }
   
 }
+
+

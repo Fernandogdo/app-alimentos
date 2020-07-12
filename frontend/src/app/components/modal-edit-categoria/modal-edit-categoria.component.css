@@ -1,18 +1,17 @@
-.container {
+.contenedor {
+    width: 100%;
+}
+
+
+/* .container {
     margin-top: 30px;
     margin-bottom: 20px;
-    /* margin: auto; */
-}
+    margin: auto; 
+}  */
 
 .titulo {
     text-align: center;
     color: rgb(0, 63, 114);
-}
-
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
 }
 
 .example-full-width {
@@ -30,8 +29,10 @@
 /*Imagen*/
 
 .preview {
-    width: 250px;
-    height: 200px;
+    max-width: 250px;
+    min-width: 20%;
+    max-height: 200px;
+    min-height: 100px;
     display: block;
     margin: auto;
 }
@@ -52,9 +53,5 @@
 /* botones */
 
 .botones {
-    margin-left: 20px !important;
-}
-
-#botones {
-    margin-left: 20px !important;
+    margin-left: 10px !important;
 }

@@ -25,7 +25,7 @@
 
 <div class="container" id="formulario">
     <mat-card class="example-card">
-        <form [formGroup]="form" #categoryForm="ngForm" (ngSubmit)="submitForm(form, categoryForm)">
+        <form [formGroup]="form" #categoryForm="ngForm" class="example-form" (ngSubmit)="submitForm(form, categoryForm)">
             <input type="hidden" name="subcategoria" formControlName="subcategoria">
             <table class="example-full-width" cellspacing="1">
                 <tr>
@@ -34,13 +34,15 @@
                             <mat-label>Autor</mat-label>
                             <input matInput type="text" name="autor" formControlName="autor">
                         </mat-form-field>
-                    </td>
-                    <td>
+
                         <mat-form-field class="example-full-width">
                             <mat-label>Fecha</mat-label>
                             <input matInput type="text" name="fecha" formControlName="fecha">
                         </mat-form-field>
                     </td>
+                    <!-- <td>
+
+                    </td> -->
                 </tr>
             </table>
 
@@ -104,13 +106,13 @@
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field class="campos">
                             <mat-label>Presentación</mat-label>
                             <input matInput type="text" name="presentacion" formControlName="presentacion">
                         </mat-form-field>
                     </td>
                     <td>
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field class="campos">
                             <mat-label>Unidades</mat-label>
                             <input matInput type="text" name="unidades" formControlName="unidades">
                         </mat-form-field>

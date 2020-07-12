@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      imagen: [null]
+      imagen: [null, Validators.required]
     })
   }
 

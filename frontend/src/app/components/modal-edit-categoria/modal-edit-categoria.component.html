@@ -1,16 +1,20 @@
-<div class="container" id="formulario">
+<div class="contenedor" id="formulario">
+
+    <!-- <div class="container"> -->
+
     <mat-card class="example-card">
         <!-- <mat-card-header id="titulo"> -->
+
         <h3 class="titulo">
             <strong>
-                    Actualizar Categoría
+                Actualizar Categoría
             </strong>
         </h3>
-        <br>
-        <!-- </mat-card-header> -->
+
+
         <form [formGroup]="form" #categoryForm="ngForm">
             <input type="hidden" value="{{idCategoria}}">
-            <div class="progress form-group" *ngIf="categoriaAlimentoService.percentDone">
+            <div class="form-group" *ngIf="categoriaAlimentoService.percentDone">
                 <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="categoriaAlimentoService.percentDone">
                 </div>
             </div>
@@ -21,9 +25,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <input type="file" (change)="uploadFile($event)">
+            <div class="row">
+                <div class="form-group">
+                    <input type="file" (change)="uploadFile($event)">
+                </div>
             </div>
+
 
             <!-- <input type="text" value="{{imagen}}"> -->
             <mat-form-field class="example-full-width">
@@ -36,11 +43,17 @@
                 <input type="text" matInput formControlName="description">
             </mat-form-field>
 
-            <div class="col text-center">
-                <button mat-raised-button color="primary" mat-dialog-close (click)="editCategory()">Actualizar</button>
-                <button mat-raised-button class="botones" color="warn" mat-dialog-close>Cerrar</button>
+            <div class="row">
+                <div class="col text-center">
+                    <button mat-raised-button color="primary" mat-dialog-close (click)="editCategory()">Actualizar</button>
+                    <button mat-raised-button class="botones" color="warn" mat-dialog-close>Cerrar</button>
+                </div>
             </div>
-
         </form>
+
+        <br>
+        <!-- </mat-card-header> -->
+
     </mat-card>
+    <!-- </div> -->
 </div>

@@ -29,6 +29,9 @@ import { RegistroSubcategoriasComponent } from './registro-subcategorias/registr
 import { VisualizaAlimentoComponent } from './visualiza-alimento/visualiza-alimento.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { EditaAlimentoComponent } from './edita-alimento/edita-alimento.component';
+import { VisualizaUsuariosComponent } from './visualiza-usuarios/visualiza-usuarios.component';
+import { EditUsuariosComponent } from './edit-usuarios/edit-usuarios.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 //Material
 // import { MaterialModule } from './material.module';
@@ -50,10 +53,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
+import {LoginGuard} from '../guards/login.guard'
 
 
 import { SnavComponent } from './snav.component';
 import { SNAV_ROUTES } from './snav.routes';
+import { AdminGuard } from '../guards/admin.guard';
+import { AccessWebGuard } from '../guards/access-web.guard';
 
 @NgModule({
   declarations: [
@@ -68,9 +74,12 @@ import { SNAV_ROUTES } from './snav.routes';
     ProfileComponent,
     ModalEditCategoriaComponent,
     ModalEditSubcategoriaComponent,
-    EditaAlimentoComponent
+    EditaAlimentoComponent,
+    VisualizaUsuariosComponent,
+    EditUsuariosComponent,
+    EditProfileComponent
   ],
-  entryComponents: [ModalEditCategoriaComponent, ModalEditSubcategoriaComponent],
+entryComponents: [ModalEditCategoriaComponent, ModalEditSubcategoriaComponent],
   imports: [
     CommonModule,
     SNAV_ROUTES,
@@ -103,6 +112,9 @@ import { SNAV_ROUTES } from './snav.routes';
     FormsModule,
   ],
   providers: [
+    LoginGuard,
+    AdminGuard,
+    AccessWebGuard
   ],
   bootstrap: [AppComponent],
   exports: [

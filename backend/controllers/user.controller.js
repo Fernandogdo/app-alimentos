@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+
 const userCtrl = {};
 const auth = require('../controllers/authentication.controller');
 var jwt = require('jsonwebtoken');
@@ -16,7 +17,10 @@ userCtrl.getUser = async (req, res) => {
 
 userCtrl.createUser = async (req, res) => {
     var body = req.body;
-    // instancia de usuario
+    if (req.imagen === undefined) {
+        req.imagen = null
+    }
+
     var user = new User({
         name: body.name,
         lastname: body.lastname,
@@ -25,8 +29,7 @@ userCtrl.createUser = async (req, res) => {
         password: bcrypt.hashSync(body.password, 10),
         isAdmin: body.isAdmin,
         isStaff: body.isStaff,
-        //rol: body.rol
-        //img: body.img,
+        imagen: req.imagen
     });
 
     await user.save((err, userDB) => {
@@ -42,40 +45,70 @@ userCtrl.createUser = async (req, res) => {
             //usuario: userDB,
         });
     });
-
-
 }
 
 userCtrl.editUser = async (req, res) => {
-    var body = this.getUser(req);
+    const { id } = req.params;
+    var body = req.body;
     // instancia de usuario
-    var user = new User({
-        name: body.name,
-        lastname: body.lastname,
-        email: body.email,
-        username: body.username,
-        password: bcrypt.hashSync(body.password, 10),
-        isAdmin: body.isAdmin,
-        isStaff: body.isStaff,
-        //rol: body.rol
-        //img: body.img,
-    });
+    var admin = false;
+    var staff = false;
 
-    await user.save((err, userDB) => {
-        if (err) {
-            return res.status(404).json({
-                ok: false,
-                mensaje: "Error al registrar usuario",
-                errors: err,
-            });
-        }
-        res.status(200).json({
-            ok: true,
-            //usuario: userDB,
-        });
-    });
+    objTransformed = JSON.parse(JSON.stringify(body));
 
+    const userS = await User.findById(req.params.id);
 
+    var newpass;
+    if (body.password != userS.password) {
+        newpass = bcrypt.hashSync(body.password, 10);
+    }else{
+        newpass = userS.password
+    }
+    // console.log(userS)
+    // console.log("Url ", req.imagen)
+    // console.log("Url2 ", userS.imagen)
+
+    if (req.imagen === undefined) {
+        req.imagen = userS.imagen
+    }
+
+    if (!objTransformed.hasOwnProperty('isAdmin')) {
+        admin = userS.isAdmin;
+    }
+    if (!objTransformed.hasOwnProperty('isStaff')) {
+        staff = userS.isStaff;
+    }
+
+    if (objTransformed.hasOwnProperty('isStaff') && objTransformed.isAdmin != userS.isAdmin) {
+        admin = objTransformed.isAdmin;
+    } else {
+        admin = userS.isAdmin
+    }
+    if (objTransformed.hasOwnProperty('isStaff') && objTransformed.isStaff != userS.isStaff) {
+        staff = objTransformed.isStaff;
+    } else {
+        staff = userS.isStaff;
+    }
+
+    var user = {
+        name: objTransformed.name,
+        lastname: objTransformed.lastname,
+        email: objTransformed.email,
+        username: objTransformed.username,
+        password: newpass,
+        isAdmin: admin,
+        isStaff: staff,
+        imagen: req.imagen,
+    }
+    await User.findByIdAndUpdate(id, { $set: user }, { useFindAndModify: false }); //Find data for id and update
+    res.status(200).json({ status: 'User updated' });
+
+}
+
+//Delete User
+userCtrl.deleteUser = async (req, res) => {
+    await User.findByIdAndRemove(req.params.id);
+    res.json({ status: 'User deleted' });
 }
 
 module.exports = userCtrl;

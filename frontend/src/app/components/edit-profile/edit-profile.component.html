@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 mat-dialog-title id="formTUser">Registrar Usuario</h2>
+    <h2 mat-dialog-title id="formTUser">Actualizar profile</h2>
     <mat-card class="example-card">
         
         <form [formGroup]="form" #userForm="ngForm">
@@ -25,32 +25,6 @@
                     <!-- <mat-error *ngIf="emails.invalid">{{getErrorMessage()}}</mat-error> -->
                 </mat-form-field>
             </div>
-            <div class="form-group">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Username</mat-label>
-                    <input type="text" matInput formControlName="username" placeholder="Ingrese el apellido">
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Ingrese un password</mat-label>
-                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <h6>Admin User</h6>
-                <mat-checkbox id="admincheck" formControlName="isAdmin">Check me!
-                </mat-checkbox>
-            </div>
-            <div class="form-group">
-                <h6>Staff User</h6>
-                <mat-checkbox id="staffcheck" formControlName="isStaff">Check me!
-                </mat-checkbox>
-            </div>
 
             <div class="form-group">
                 <div class="preview" *ngIf="preview && preview !== null">
@@ -64,8 +38,8 @@
             </div>
 
             <div class="col ">
-                <button mat-raised-button class="botones" color="primary" (click)="addNewUser(form, userForm)">Guardar</button>
-                <button mat-stroked-button class="botones" routerLink="/visualizarusuarios"
+                <button mat-raised-button class="botones" color="primary" (click)="modifyProfileUser(form, userForm)">Guardar</button>
+                <button mat-stroked-button class="botones" routerLink="/profile"
                     routerLinkActive="active">Cancelar</button>
                 <button mat-stroked-button class="botones" (click)="resetForm(userForm)" color="warn">Limpiar</button>
 

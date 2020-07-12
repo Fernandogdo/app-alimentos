@@ -38,11 +38,22 @@
     margin: auto;
 }
 
+
+/*IMagen-CARD */
+
 .header-image {
     width: 50px;
     height: 50px;
     background-size: cover;
+    border-radius: 45%;
 }
+
+
+/* .header-image {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+} */
 
 #formulario {
     min-width: 150px;
@@ -56,6 +67,8 @@
 
 #tarjeta-categoria {
     background: rgb(234, 171, 0);
+    margin-top: 10px;
+    padding: 35px;
 }
 
 p {
@@ -67,6 +80,10 @@ p {
 
 .float-right {
     margin-left: 20px !important;
+}
+
+.row p {
+    text-align: justify;
 }
 
 

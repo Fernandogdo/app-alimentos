@@ -1,22 +1,23 @@
 export class User {
 
-    constructor(_id = '', nombre ='', apellido = '', email ='', username = '', password ='', isAdmin = false, isStaff = false){
+    constructor(_id = '', name ='', lastname = '', email ='', username = '', password ='', isAdmin = false, isStaff = false, imagen=''){
         this._id = _id;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.name = name;
+        this.lastname = lastname;
         this.email = email;
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
         this.isStaff = isStaff;
-       
+        this.imagen = imagen;
     }
     _id?: string;
-    nombre?: string;
-    apellido?: string;
+    name?: string;
+    lastname?: string;
     email?: string;
     username?: string;
     password?: string;
     isAdmin?: Boolean;
     isStaff?: Boolean;
+    imagen?: string;
 }

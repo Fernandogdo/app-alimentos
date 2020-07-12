@@ -7,12 +7,12 @@ import { RegistroSubcategoriasComponent } from './components/registro-subcategor
 import { RegistroUsuariosComponent } from './components/registro-usuarios/registro-usuarios.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { VisualizaAlimentoComponent } from './components/visualiza-alimento/visualiza-alimento.component';
-import { EditaAlimentoComponent } from './components/edita-alimento/edita-alimento.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-
+import { VisualizaUsuariosComponent } from './components/visualiza-usuarios/visualiza-usuarios.component';
+import { EditUsuariosComponent } from './components/edit-usuarios/edit-usuarios.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+ { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   // { path: '', redirectTo: '/login', pathMatch: 'full' }
   // { path: 'sidenav', component: SidenavComponent },

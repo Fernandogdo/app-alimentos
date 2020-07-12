@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/authentication.controller');
 const user = require('../controllers/user.controller');
+const upload = require('../controllers/uploadimage.controller');
 
-router.get('/', [auth.verifyToken], user.getUsers);
-router.post('/', user.createUser);
+router.get('/', user.getUsers);
+router.post('/', [upload.cargarImagen], user.createUser);
 router.get('/:id', user.getUser);
+router.put('/:id', [upload.cargarImagen], user.editUser);
+router.delete('/:id', user.deleteUser);
 
 
 module.exports = router;

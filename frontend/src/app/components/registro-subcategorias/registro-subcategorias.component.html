@@ -1,86 +1,107 @@
-<hr color="blue" size=2>
+<div class="contenedor">
+    <hr color="blue" size=2>
 
-<div class="container">
-    <h2>
-        <strong>
-          Subcategoría de Alimentos
+    <div class="container">
+        <h2>
+            <strong>
+            Subcategoría de Alimentos
         </strong>
-    </h2>
-</div>
+        </h2>
+    </div>
 
-
-<div class="container" id="formulario">
-
-    <table>
-
-    </table>
-    <mat-card class="example-card">
-        <form [formGroup]="form" #subcategoryForm="ngForm" (ngSubmit)="addSubCategory(form, subcategoryForm)">
-            <!-- ID CATEGORIA -->
-            <input type="hidden" value="{{idCategoria}}">
-            <div class="progress form-group" *ngIf="subcategoriaAlimentoService.percentDone">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="categoriaAlimentoService.percentDone">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="preview" *ngIf="preview && preview !== null">
-                    <img [src]="preview" class="preview">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <input type="file" name="upload" (change)="uploadFile($event)">
-            </div>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Nombre Sub Categoria</mat-label>
-                <input type="text" matInput formControlName="name" placeholder="Ingrese Sub Categoria">
-            </mat-form-field>
-
-            <div class="col text-center">
-                <button mat-raised-button class="botones" color="primary" [disabled]='!form.valid'>Agregar</button>
-            </div>
-        </form>
-    </mat-card>
-</div>
-
-<div class="container">
-    <!-- <mat-grid-list class="grid-lista" cols="2" rowHeight="2:1"> -->
-    <!-- <mat-grid-tile *ngFor="let subcategory of subcategoriaAlimentoService.subcategories"> -->
-    <mat-card class="example-card" id="tarjeta-subcategoria" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
-        <div class="float-right">
-            <button class="float-right" id="boton-borrar" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
-                <mat-icon>delete</mat-icon>
-              </button>
-            <button class="float-right" id="boton-editar" (click)="ModalEditSubCategoria(subcategory._id, subcategory.name, idCategoria, subcategory.imagen)" mat-fab color="accent">
-                <mat-icon>create</mat-icon>
-              </button>
-
-            <button class="float-right" id="boton-agregar" mat-fab color="primary" [routerLink]="['/registroalimento/', subcategory._id]">
-                <mat-icon>addchart</mat-icon>
-              </button>
+    <div class="container" id="formulario">
+        <div class="col text-center">
+            <button mat-raised-button class="botones" color="primary" routerLink="/dashboard" routerLinkActive="active">Categorías</button>
         </div>
-        <mat-card-header>
-            <div mat-card-avatar>
-                <img src="{{subcategory.imagen}}" class="header-image" [alt]="subcategory.name">
-            </div>
+    </div>
 
-            <mat-card-title class="col text-center" id="tituloSubcategoria">{{subcategory.name}}</mat-card-title>
-            <!-- ID SUBCATEGORIA -->
-            <input type="hidden" value="{{subcategory._id}}">
-        </mat-card-header>
-        <br>
-        <mat-card-actions>
-            <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]">
-                <mat-icon>visibility</mat-icon>
-              </button>
-        </mat-card-actions>
-    </mat-card>
-    <!-- </mat-grid-tile>
+
+    <div class="container" id="formulario">
+        <mat-card class="example-card">
+            <form [formGroup]="form" #subcategoryForm="ngForm" (ngSubmit)="addSubCategory(form, subcategoryForm)">
+                <!-- ID CATEGORIA -->
+                <input type="hidden" value="{{idCategoria}}">
+                <div class="progress form-group" *ngIf="subcategoriaAlimentoService.percentDone">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="categoriaAlimentoService.percentDone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="preview" *ngIf="preview && preview !== null">
+                        <img [src]="preview" class="preview">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="file" name="upload" (change)="uploadFile($event)">
+                </div>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Sub Categoria</mat-label>
+                    <input type="text" matInput formControlName="name" placeholder="Ingrese Sub Categoria">
+                </mat-form-field>
+
+                <div class="col text-center">
+                    <button mat-raised-button class="botones" color="primary" [disabled]='!form.valid'>Agregar</button>
+                </div>
+            </form>
+        </mat-card>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-6 " *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
+                <!-- <div class="row" > -->
+
+
+                <mat-card class="example-card" id="tarjeta-subcategoria">
+                    <div class="col ls-6">
+                        <mat-card-header>
+                            <div mat-card-avatar>
+                                <img src="{{subcategory.imagen}}" class="header-image" [alt]="subcategory.name">
+                            </div>
+
+                            <mat-card-title class="col text-center" id="tituloSubcategoria">{{subcategory.name}}
+                            </mat-card-title>
+                            <!-- ID SUBCATEGORIA -->
+                            <input type="hidden" value="{{subcategory._id}}">
+                        </mat-card-header>
+                        <br>
+                    </div>
+
+                    <div class="col ls-6">
+                        <button class="float-right" id="boton-borrar" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+
+                        <button class="float-right" id="boton-editar" (click)="ModalEditSubCategoria(subcategory._id, subcategory.name, idCategoria, subcategory.imagen)" mat-fab color="accent">
+                                <mat-icon>create</mat-icon>
+                            </button>
+
+                        <button class="float-right" id="boton-agregar" mat-fab color="primary" [routerLink]="['/registroalimento/', subcategory._id]">
+                                <mat-icon>addchart</mat-icon>
+                            </button>
+                    </div>
+
+                    <div class="row">
+                        <mat-card-actions>
+                            <button mat-stroked-button color="primary" [routerLink]="['/visualiza/', subcategory._id]">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        </mat-card-actions>
+                    </div>
+
+                </mat-card>
+                <!-- </div> -->
+            </div>
+        </div>
+        <!-- <mat-grid-list class="grid-lista" cols="2" rowHeight="2:1"> -->
+        <!-- <mat-grid-tile *ngFor="let subcategory of subcategoriaAlimentoService.subcategories"> -->
+
+        <!-- </mat-grid-tile>
 
     </mat-grid-list> -->
 
-    <!-- <mat-card class="example-card" id="tarjeta-subcategoria" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
+        <!-- <mat-card class="example-card" id="tarjeta-subcategoria" *ngFor="let subcategory of subcategoriaAlimentoService.subcategories">
         <div class="float-right">
             <button class="float-right" id="boton-borrar" (click)="deleteSubCategory(subcategory._id)" mat-fab color="warn">
         <mat-icon>delete</mat-icon>
@@ -109,4 +130,5 @@
       </button>
         </mat-card-actions>
     </mat-card> -->
+    </div>
 </div>
