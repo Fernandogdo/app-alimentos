@@ -3,8 +3,14 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const app = express();
+var bodyParser = require('body-parser')
 
 const { mongoose } = require('./database');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 //Settings
 app.set('port', process.env.PORT || 3000);
@@ -21,6 +27,7 @@ app.use('/api/roles' ,require('./routes/roles.routes'));
 app.use('/api/login' ,require('./routes/login.routes'));
 app.use('/api/categorias' ,require('./routes/categorias.routes'));
 app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
+app.use('/user', require('./routes/cliente.routes'))
 // app.use('/api/alimento', require(''));
 
 app.use('/api/alimentos', require('./routes/alimentos.routes'));

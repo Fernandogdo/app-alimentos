@@ -35,9 +35,7 @@ authCtrl.verifyToken = async (req, res, next) => {
 
 authCtrl.generateToken = async (req, res) => {
     const objtaken = req;
-    console.log("jjjjjjj" + objtaken);
     const token = await jwt.sign({ objtaken }, secretK);
-
     return token;
 }
 
