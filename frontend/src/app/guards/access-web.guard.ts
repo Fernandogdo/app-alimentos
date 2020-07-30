@@ -25,7 +25,7 @@ export class AccessWebGuard implements CanActivate {
     if(this.validateS.priviligies().isAdmin == false && this.validateS.priviligies().isStaff == false){
       
       this._snackBar.open("No tiene acceso", "Cerrar", {
-        duration: 2000,
+        duration: 1000,
       });
       this.route.navigate(['/login']);
       return false;

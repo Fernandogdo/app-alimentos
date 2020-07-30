@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from '@angular/forms';
 import { NgForm } from '@angular/forms';
 import { UsersService } from './../../services/users.service';
 import { User } from 'src/app/models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomvalidationsService } from './../../services/customvalidations.service';
 
 @Component({
   selector: 'app-registro-usuarios',
@@ -14,31 +15,31 @@ export class RegistroUsuariosComponent implements OnInit {
   user = {} as User;
   form: FormGroup;
   preview: String;
-  constructor(private userService: UsersService, public fb: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private userService: UsersService, public fb: FormBuilder, private _snackBar: MatSnackBar, private customValidator: CustomvalidationsService) {
+    
+  }
+
+  ngOnInit() {
     this.form = this.fb.group({
       name: [''],
       lastname: [''],
-      email: [''],
-      username: [''],
+      email: ['',[Validators.required, Validators.email]],
+      username: ['',[Validators.required], this.customValidator.userNameValidator.bind(this.customValidator)],
       password: [''],
       isAdmin: [''],
       isStaff: [''],
       imagen: [null]
-    })
+    });
   }
 
-  ngOnInit() {
-
-  }
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.form.get('email').hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.form.get('email').hasError('email') ? 'No es un correo valido' : '';
   }
 
   uploadFile(event) {
@@ -58,8 +59,7 @@ export class RegistroUsuariosComponent implements OnInit {
 
 
   addNewUser(formData: any, formDirective: NgForm) {
-    console.log(this.form.value.imagen);
-    console.log(this.form.value.isStaff);
+    
     if (this.form.value.isAdmin === undefined || this.form.value.isAdmin === '') {
       this.form.value.isAdmin = false;
     }

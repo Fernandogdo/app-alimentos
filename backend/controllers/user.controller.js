@@ -47,6 +47,27 @@ userCtrl.createUser = async (req, res) => {
     });
 }
 
+userCtrl.checkuserCreated = async  (req, res) =>  {
+    const username = req.params.id;
+    console.log(username)
+     const userDB = await User.findOne({ username: username });
+
+        if (!userDB) {
+            return res.status(200).json({
+                username: "",
+            });
+        }
+
+        if (userDB) {
+            return res.status(200).json({
+                username: userDB.username,
+                
+               
+            });
+        }
+
+}
+
 userCtrl.editUser = async (req, res) => {
     const { id } = req.params;
     var body = req.body;

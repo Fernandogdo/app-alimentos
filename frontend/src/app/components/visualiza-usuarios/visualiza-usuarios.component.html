@@ -10,20 +10,25 @@
         </div>
 
         <div class="row" id="content">
-            <div class="col-6 col-md-4" *ngFor="let user of usersdata">
-                <mat-card class="tarjetauser">
-
-                    <div class="row">
-                        <div class="col col-md-12">
-                            <mat-card-title class="col"></mat-card-title>
-
-                            <label class="font-weight-bold">Nombre: </label>
-
-                            <span class="userN"> {{user.name}} {{user.lastname}} </span>
-                        </div>
-                    </div>
-
-                    <div class="row justify-content-md-center">
+            <table class="table table-hover">
+                <thead class="thead">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of usersdata; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td> <div class="row justify-content-md-center">
                         <button mat-mini-fab class="cediticon" [routerLink]="['/editarusuario/', user._id]"
                             routerLinkActive="active">
                             <mat-icon class="editicon">create</mat-icon>
@@ -32,10 +37,11 @@
                         <button mat-mini-fab class="cdeleteicon" (click)="deleteuserinformation(user._id)">
                             <mat-icon class="deleteicon">delete_sweep</mat-icon>
                         </button>
-                    </div>
-
-                </mat-card>
-            </div>
+                    </div></td>
+                  </tr>
+                </tbody>
+              </table>
+              
         </div>
 
     </div>

@@ -25,7 +25,7 @@ export class EditUsuariosComponent implements OnInit {
     this.form = this.fb.group({
       name: [''],
       lastname: [''],
-      email: [''],
+      email: ['',[Validators.required, Validators.email]],
       username: [''],
       password: [''],
       isAdmin: [''],
@@ -37,20 +37,18 @@ export class EditUsuariosComponent implements OnInit {
   ngOnInit() {
 
     this.userselected = this.route.snapshot.params['id'];
-    console.log(this.userselected)
+ 
     this.getuserinformation(this.userselected)
 
   }
 
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.form.get('email').hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    return this.form.get('email').hasError('email') ? 'No es un correo valido' : '';
   }
 
   getuserinformation(user_id) {
