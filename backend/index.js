@@ -28,11 +28,7 @@ app.use('/api/login', require('./routes/login.routes'));
 app.use('/api/categorias', require('./routes/categorias.routes'));
 app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 app.use('/user', require('./routes/cliente.routes'))
-<<<<<<< HEAD
 // app.use('/api/alimento', require(''));
-=======
-    // app.use('/api/alimento', require(''));
->>>>>>> fusionAlexFerna
 
 app.use('/api/alimentos', require('./routes/alimentos.routes'));
 
