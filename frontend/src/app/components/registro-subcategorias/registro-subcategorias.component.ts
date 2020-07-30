@@ -3,12 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { SubcategoriaAlimento } from '../../models/subcategoria-alimento';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ThrowStmt } from '@angular/compiler';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalEditSubcategoriaComponent } from '../modal-edit-subcategoria/modal-edit-subcategoria.component';
+import { CategoriaAlimentoService } from 'src/app/services/categoria-alimento.service';
+import { CategoriaAlimento } from 'src/app/models/categoria-alimento';
 
 @Component({
   selector: 'app-registro-subcategorias',
@@ -23,8 +23,12 @@ export class RegistroSubcategoriasComponent implements OnInit {
   preview: string;
   form: FormGroup;
   idCategoria;
+  categoria;
+  nombreCategoria;
   _id: string;
   name: string = "";
+
+  Categorias: any = [];
 
   // subcategoria = {} as SubcategoriaAlimento;
   public subcategoria: SubcategoriaAlimento = {};
@@ -35,6 +39,7 @@ export class RegistroSubcategoriasComponent implements OnInit {
     public dialog2: MatDialog,
     private route: ActivatedRoute,
     public fb: FormBuilder,
+    private categoriaAlimentoService: CategoriaAlimentoService
   ) {
     // Reactive Form
     this.form = this.fb.group({
@@ -47,6 +52,10 @@ export class RegistroSubcategoriasComponent implements OnInit {
     this.idCategoria = this.route.snapshot.params['id'];
     console.log(this.idCategoria)
     this.getSubCategories();
+    // setTimeout(() => {
+      
+    // }, 500);
+    this.getCategories();
     // this.obtenerIdCategoria();
   }
 
@@ -84,7 +93,8 @@ export class RegistroSubcategoriasComponent implements OnInit {
       });
   }
 
-
+ 
+  
 
 
   // addSubCategory(form: NgForm) {
@@ -116,6 +126,7 @@ export class RegistroSubcategoriasComponent implements OnInit {
   //   }
   // }
 
+  
   getSubCategories() {
     this.subcategoriaAlimentoService.getSubCategory(this.idCategoria) //Toma el valor del empleado 
       .subscribe(res => {
@@ -155,9 +166,19 @@ export class RegistroSubcategoriasComponent implements OnInit {
     });
   }
 
+  getCategories() {
+    this.categoriaAlimentoService.getCategoria(this.idCategoria) //Trae Categorias 
+      .subscribe((res) => {
+        console.log(res);
+        this.categoria = res;
+        this.nombreCategoria = this.categoria.name;
+        console.log(this.nombreCategoria);
+        this.Categorias = res as CategoriaAlimento[];
+      })
+  }
+
   //Reset Form
   resetForm(data) {
-
     data.reset();
     this.subcategoriaAlimentoService.selectedsubCategory = new SubcategoriaAlimento();
   }

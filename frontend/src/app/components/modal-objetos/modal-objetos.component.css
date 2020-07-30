@@ -1,0 +1,19 @@
+.example-card {
+    /* background-color:rgb(224, 222, 216); */
+    margin: 30px;
+    width: 200px;
+}
+
+#objeto {
+    width: 100px;
+}
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.example-radio-button {
+    margin: 5px;
+}

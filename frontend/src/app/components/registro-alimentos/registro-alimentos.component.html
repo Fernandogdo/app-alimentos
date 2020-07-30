@@ -6,27 +6,63 @@
 <div class="container">
     <h2>
         <strong>
-            FICHA TÉCNICA DE PRODUCTO
+            FICHA TÉCNICA DE PRODUCTO: {{nombreSubcategoria}}
         </strong>
     </h2>
 </div>
 
-
 <hr color="yellow" size=2>
+
 
 <div class="container" id="formulario">
     <div class="col text-center">
         <button mat-raised-button class="botones" color="primary" [routerLink]="['/visualiza/', subcategoria]">Visualizar Alimentos</button>
+        <!-- <app-modal-objetos (objetoId)="procesaPropagar($event)"></app-modal-objetos> -->
+        <button mat-raised-button class="botones" color="primary" routerLink="/dashboard" routerLinkActive="active">Categorías</button>
+
     </div>
 </div>
+<br>
 
-
+<!-- <div class="container mt-5">
+    <h2>Google Login</h2>
+    <div class="row mt-5">
+        <div class="col-md-4 mt-2 m-auto ">
+            <button class="loginBtn loginBtn--google" #loginRef>
+              Login with Google
+            </button>
+        </div>
+    </div>
+</div> -->
 
 
 <div class="container" id="formulario">
     <mat-card class="example-card">
         <form [formGroup]="form" #categoryForm="ngForm" class="example-form" (ngSubmit)="submitForm(form, categoryForm)">
             <input type="hidden" name="subcategoria" formControlName="subcategoria">
+
+            <!-- <mat-radio-group aria-label="Select an option" name="mercado" formControlName="mercado">
+                <mat-radio-button *ngFor="let op of tipoEleccion" [value]="op">
+                    {{op}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <div>Your favorite season is: {{op}}</div> -->
+
+            <!-- <mat-radio-group aria-label="Select an option" (ngModelChange)="getIdEstado($event)" name="modelo3d" formControlName="modelo3d">
+                <mat-radio-button *ngFor="let item of objetos" [value]="item.id">
+                    {{item.name}}
+                </mat-radio-button>
+            </mat-radio-group> -->
+
+            <mat-form-field appearance="fill">
+                <mat-label>Elegir Modelo</mat-label>
+                <mat-select (ngModelChange)="getIdEstado($event)" name="modelo3d" formControlName="modelo3d">
+                    <mat-option *ngFor="let item of objetos" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!-- <div>Your favorite season is: {{modelo3d}}</div> -->
             <table class="example-full-width" cellspacing="1">
                 <tr>
                     <td>
@@ -119,8 +155,8 @@
                     </td>
                 </tr>
             </table>
-            <br>
 
+            <br>
             <hr color="black" size=2>
 
             <table class="example-full-width" cellspacing="0">

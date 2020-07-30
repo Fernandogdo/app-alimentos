@@ -12,6 +12,14 @@
     <mat-card class="example-card">
         <form [formGroup]="form" #categoryForm="ngForm">
             <input type="hidden" name="idAlimento" value="{{idAlimento}}">
+            <mat-form-field appearance="fill">
+                <mat-label>Elegir Modelo</mat-label>
+                <mat-select (ngModelChange)="getIdEstado($event)" name="modelo3d" formControlName="modelo3d">
+                    <mat-option *ngFor="let item of objetos" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <table class="example-full-width" cellspacing="0">
                 <tr>
                     <td>

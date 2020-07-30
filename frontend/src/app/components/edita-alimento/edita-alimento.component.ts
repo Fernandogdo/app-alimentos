@@ -4,6 +4,7 @@ import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AlimentoService } from 'src/app/services/alimento.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { GoogleServiceService } from 'src/app/services/google-service.service';
 
 @Component({
   selector: 'app-edita-alimento',
@@ -19,13 +20,17 @@ export class EditaAlimentoComponent implements OnInit {
   oneAlimento;
   alimentoSelected;
   idSubcategoria;
+  objetos;
+  idObjeto;
+  id_JSON = "1kxnsJSqhBSr95xb_BNpaNWXmhNSl2QGj"
 
   constructor(
     public fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private alimentoService: AlimentoService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private googleService: GoogleServiceService
   ) {
     this.form = this.fb.group({
       autor: ['', Validators.required],
@@ -46,6 +51,7 @@ export class EditaAlimentoComponent implements OnInit {
       glucidos: [''],
       proteinas: [''],
       lipidos: [''],
+      modelo3d: [''],
       imagen: [null],
     })
   }
@@ -57,11 +63,25 @@ export class EditaAlimentoComponent implements OnInit {
 
   ngOnInit() {
     this.idAlimento = this.route.snapshot.params['id'];
-    console.log('IDALIMENTO', this.idAlimento)
+    // console.log('IDALIMENTO', this.idAlimento)
 
     this.alimentoSelected = this.idAlimento;
     this.getAlimento(this.alimentoSelected)
-    this.getAlimentos()
+    this.getAlimentos();
+    this.getJson();
+  }
+
+  getJson() {
+    this.googleService.getJson(this.id_JSON).subscribe(res => {
+      // console.log(res);
+      this.objetos = res;
+    }
+  )}
+
+  getIdEstado(e) {
+    // console.log('IdObjeto:', e);
+    this.idObjeto = e;
+    // console.log('idEstado:', this.idObjeto);
   }
 
   uploadFile(event) {
@@ -83,6 +103,7 @@ export class EditaAlimentoComponent implements OnInit {
     this.alimentoService.getOneAlimento(idAlimento)
       .subscribe(res => {
         this.oneAlimento = res
+        // console.log(res);
         this.idSubcategoria = this.oneAlimento.subcategoria
         this.form.patchValue({
           autor: this.oneAlimento.autor,
@@ -102,11 +123,10 @@ export class EditaAlimentoComponent implements OnInit {
           kilocalorias: this.oneAlimento.kilocalorias,
           glucidos: this.oneAlimento.glucidos,
           proteinas: this.oneAlimento.proteinas,
-          lipidos: this.oneAlimento.lipidos,    
+          lipidos: this.oneAlimento.lipidos,   
+          modelo3d: this.oneAlimento.modelo3d 
         });
         this.preview = this.oneAlimento.imagen;
-        console.log('SERVER',res);
-        console.log('IDSUBCATEGORIA',this.oneAlimento.subcategoria);
       });
   }
 
@@ -133,21 +153,17 @@ export class EditaAlimentoComponent implements OnInit {
       this.form.value.glucidos,
       this.form.value.proteinas,
       this.form.value.lipidos,
+      this.form.value.modelo3d,
       this.form.value.imagen,
     )
       .subscribe(res => {
-        console.log(res);
         this._snackBar.open("Alimento Actualizada", "Cerrar", {
           duration: 2000,
         });
-        console.log(res);
         this.getAlimento(this.idSubcategoria);
         this.router.navigate(['/visualiza', this.idSubcategoria])
         // "['/visualiza', idSubctegoria ]"
-      });
-
-     
-     
+      });  
   }
 
   getAlimentos() {
@@ -155,7 +171,7 @@ export class EditaAlimentoComponent implements OnInit {
       .subscribe((res) => {
         // this.categoriaAlimentoService.categories = res as CategoriaAlimento[];
         this.Alimentos = res as Alimento[];
-        console.log(res);
+        // console.log(res);
       })
   }
 }

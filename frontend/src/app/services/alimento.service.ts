@@ -23,7 +23,7 @@ export class AlimentoService {
   postAlimento(subcategoria: string, autor: string, fecha: string, categoria: string, nombre_comun: string, nombre_cientifico: string,
     otro_nombre: string, origen: string, conservacion_alimento: string, description: string, temporada: string,
     presentacion: string, unidades: string, mercado: string, supermercado: string, kilocalorias: string, glucidos: string,
-    proteinas: string, lipidos: string, upload: File) {
+    proteinas: string, lipidos: string, modelo3d: string, upload: File) {
     var formData: any = new FormData();
     formData.append('subcategoria', subcategoria);
     formData.append('autor', autor);
@@ -44,7 +44,9 @@ export class AlimentoService {
     formData.append('glucidos', glucidos);
     formData.append('proteinas', proteinas);
     formData.append('lipidos', lipidos);
+    formData.append('modelo3d', modelo3d);
     formData.append('upload', upload);
+    
 
     return this.http.post(this.URL, formData)
   }
@@ -58,7 +60,7 @@ export class AlimentoService {
   putAlimento(idAlimento: string, subcategoria: string, autor: string, fecha: string, categoria: string, nombre_comun: string,
     nombre_cientifico: string, otro_nombre: string, origen: string, conservacion_alimento: string,
     description: string, temporada: string, presentacion: string, unidades: string, mercado: string,
-    supermercado: string, kilocalorias: string, glucidos: string, proteinas: string, lipidos: string,
+    supermercado: string, kilocalorias: string, glucidos: string, proteinas: string, lipidos: string, modelo3d: string,
     upload: File) {
     var formData: any = new FormData();
     formData.append('subcategoria', subcategoria);
@@ -80,6 +82,7 @@ export class AlimentoService {
     formData.append('glucidos', glucidos);
     formData.append('proteinas', proteinas);
     formData.append('lipidos', lipidos);
+    formData.append('modelo3d', modelo3d);
     formData.append('upload', upload);
     console.log('IDSALIMENSERVI', idAlimento);
     console.log('IDSUBSERVI', subcategoria);

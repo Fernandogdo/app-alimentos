@@ -23,6 +23,7 @@ import { RegistroUsuariosComponent } from './registro-usuarios/registro-usuarios
 import { ProfileComponent } from './profile/profile.component';
 import { ModalEditCategoriaComponent } from './modal-edit-categoria/modal-edit-categoria.component';
 import { ModalEditSubcategoriaComponent } from './modal-edit-subcategoria/modal-edit-subcategoria.component';
+import { ModalObjetosComponent } from './modal-objetos/modal-objetos.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegistroAlimentosComponent } from './registro-alimentos/registro-alimentos.component';
 import { RegistroSubcategoriasComponent } from './registro-subcategorias/registro-subcategorias.component';
@@ -54,7 +55,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import {LoginGuard} from '../guards/login.guard'
-
+import {MatSelectModule} from '@angular/material/select';
 
 import { SnavComponent } from './snav.component';
 import { SNAV_ROUTES } from './snav.routes';
@@ -77,10 +78,12 @@ import { AccessWebGuard } from '../guards/access-web.guard';
     EditaAlimentoComponent,
     VisualizaUsuariosComponent,
     EditUsuariosComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ModalObjetosComponent
   ],
-entryComponents: [ModalEditCategoriaComponent, ModalEditSubcategoriaComponent],
+entryComponents: [ModalEditCategoriaComponent, ModalEditSubcategoriaComponent, ModalObjetosComponent],
   imports: [
+    MatSelectModule,
     CommonModule,
     SNAV_ROUTES,
     BrowserModule,
