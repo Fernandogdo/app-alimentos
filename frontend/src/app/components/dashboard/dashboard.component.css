@@ -38,6 +38,95 @@
     margin: auto;
 }
 
+.header-image {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+#formulario {
+    min-width: 150px;
+    max-width: 350px;
+}
+
+
+/* #card-categoria{
+  background: rgb(224, 222, 216);
+} */
+
+#tarjeta-categoria {
+    background: rgb(234, 171, 0);
+}
+
+p {
+    color: rgb(0, 63, 114);
+}
+
+
+/* botones */
+
+.float-right {
+    margin-left: 20px !important;
+}
+
+
+/* .botones{
+  margin-left: 20px !important;
+} */
+
+#boton-editar {
+    margin-left: 10px !important;
+    background: rgb(129, 119, 88);
+}
+
+#boton-borrar {
+    margin-left: 10px !important;
+    background: rgb(167, 25, 48);
+}
+
+#boton-agregar {
+    margin-left: 10px !important;
+    background: rgb(0, 63, 114);
+}/* .contenedor {
+    background: rgb(224, 222, 216);
+    margin-top: 30px;
+    margin-bottom: 30px;
+} */
+
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.container h2 {
+    color: rgb(0, 63, 114);
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.example-card {
+    max-width: 100%;
+    margin-top: 25px;
+}
+
+
+/*Imagen*/
+
+.preview {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+}
+
 
 /*IMagen-CARD */
 

@@ -29,11 +29,13 @@
     height: fit-content;
 }
 
-.tarjetauser{
+.thead{
+    background-color: #003F72 !important;
+}
+
+.thead th{
     
-    width: 90%;
-    background-color: #EAAB00 !important;
-    margin-bottom: 10px;
+    color:white !important;
 }
 
 .userN{

@@ -55,5 +55,9 @@ export class UsersService {
     return this.http.get(this.URL + `/${_id}`);
   }
 
+  checkingaUser(_id: string) {
+    return this.http.get(this.URL + `/check/${_id}`);
+  }
+
 }
 

@@ -29,20 +29,21 @@ loginCtrl.checkwebLogininfo = async  (req, res) =>  {
 
         }
 
-        if(!userDB.isAdmin == true || !userDB.isStaff == true){
+        if(!userDB.isAdmin == true && !userDB.isStaff == true){
+            var token = await auth.generateToken(userDB);
             return res.status(200).json({
                 web_access : false,
                 mob_access : true,
                 mensaje: "No cuenta con acceso para acceder a la web.",
-                usuario: userDB
-              
+                usuario: userDB,
+                token: token
+                
             });
         }else{
             var token = await auth.generateToken(userDB);
             //var token = jwt.sign({_id : userDB._id }, '@dev-ingweb@-@utpl-@2020');
             return res.status(200).json({
-                web_access : true,
-                mob_access : true,
+                access : true,
                 usuario: userDB,
                 token: token
             });
