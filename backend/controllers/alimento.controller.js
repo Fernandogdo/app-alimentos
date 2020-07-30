@@ -32,6 +32,7 @@ alimentoCtrl.creaAlimento = async(req, res) => {
         glucidos: req.body.glucidos,
         proteinas: req.body.proteinas,
         lipidos: req.body.lipidos,
+        modelo3d: req.body.modelo3d,
         subcategoria: req.body.subcategoria,
         imagen: req.imagen
     });
@@ -94,6 +95,7 @@ alimentoCtrl.editAlimento = async(req, res) => {
         glucidos: req.body.glucidos,
         proteinas: req.body.proteinas,
         lipidos: req.body.lipidos,
+        modelo3d: req.body.modelo3d,
         imagen: req.imagen
     }
     await Alimento.findByIdAndUpdate(id, { $set: alimento }, { useFindAndModify: false }); //Find data for id and update por alimento

@@ -1,0 +1,165 @@
+<hr color="blue" size=2>
+
+<div class="container">
+    <h2>
+        <strong>
+          Edita Alimentos
+        </strong>
+    </h2>
+</div>
+
+<div class="container" id="formulario">
+    <mat-card class="example-card">
+        <form [formGroup]="form" #categoryForm="ngForm">
+            <input type="hidden" name="idAlimento" value="{{idAlimento}}">
+            <mat-form-field appearance="fill">
+                <mat-label>Elegir Modelo</mat-label>
+                <mat-select (ngModelChange)="getIdEstado($event)" name="modelo3d" formControlName="modelo3d">
+                    <mat-option *ngFor="let item of objetos" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Autor</mat-label>
+                            <input matInput formControlName="autor">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Fecha</mat-label>
+                            <input matInput formControlName="fecha">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+
+            <!-- IMAGEN -->
+            <h3>Imagen del Producto</h3>
+            <br>
+            <div class="imagen">
+                <div class="preview" *ngIf="preview && preview !== null">
+                    <img [src]="preview" class="preview">
+                </div>
+            </div>
+
+            <div class="imagen">
+                <input type="file" (change)="uploadFile($event)">
+            </div>
+
+            <br>
+            <hr color="black" size=2>
+            <br>
+            <h3>Datos Generales</h3>
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Grupo Alimentario</mat-label>
+                    <input matInput formControlName="categoria">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Común</mat-label>
+                    <input matInput type="text" name="nombre_comun" formControlName="nombre_comun">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre Cientifico</mat-label>
+                    <input matInput type="text" name="nombre_cientifico" formControlName="nombre_cientifico">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Otros Nombres</mat-label>
+                    <input matInput type="text" name="otro_nombre" formControlName="otro_nombre">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Origen</mat-label>
+                    <textarea matInput type="text" name="origen" formControlName="origen"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Conservación del Producto</mat-label>
+                    <textarea matInput type="text" name="conservacion_alimento" formControlName="conservacion_alimento"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Morfología: descripción del producto</mat-label>
+                    <textarea matInput type="text" name="description" formControlName="description"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Temporada de siembra y cosecha:</mat-label>
+                    <textarea matInput type="text" name="temporada" formControlName="temporada"></textarea>
+                </mat-form-field>
+
+            </p>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Presentación</mat-label>
+                            <input matInput type="text" name="presentacion" formControlName="presentacion">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Unidades</mat-label>
+                            <input matInput type="text" name="unidades" formControlName="unidades">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <br>
+
+            <hr color="black" size=2>
+
+            <table class="example-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <h5>Ubicación Comercial Ciudad de Loja </h5>
+                        <h6>Mercados Populares</h6>
+                        <mat-radio-group aria-label="Select an option" name="mercado" formControlName="mercado">
+                            <mat-radio-button *ngFor="let op of tipoEleccion" [value]="op">
+                                {{op}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <h6>Supermercados</h6>
+                        <mat-radio-group aria-label="Select an option" name="supermercado" formControlName="supermercado">
+                            <mat-radio-button *ngFor="let op of tipoEleccion" [value]="op">
+                                {{op}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </td>
+                    <td>
+                        <br>
+                        <br>
+                        <h5>Valor Nutricional: calórico </h5>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Kcal:</mat-label>
+                            <input matInput type="text" name="kilocalorias" formControlName="kilocalorias">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Glúcidos:</mat-label>
+                            <input matInput type="text" name="glucidos" formControlName="glucidos">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Proteínas:</mat-label>
+                            <input matInput type="text" name="proteinas" formControlName="proteinas">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Lípidos:</mat-label>
+                            <input matInput type="text" name="lipidos" formControlName="lipidos">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+
+
+            <div class="col text-center">
+                <button mat-raised-button class="botones" color="primary" [disabled]='!form.valid' (click)="editAlimento()">Actualizar</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

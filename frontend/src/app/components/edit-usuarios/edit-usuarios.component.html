@@ -1,0 +1,75 @@
+
+<div class="container">
+    <h2 mat-dialog-title id="formTUser">Actualizar Usuario</h2>
+    <mat-card class="example-card" >
+        
+        <form [formGroup]="form"  #userForm="ngForm" >
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input type="text" formControlName="name" matInput name="name" placeholder="Ingrese el nombre" required>
+                    
+                </mat-form-field>
+
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Apellido</mat-label>
+                    <input type="text" formControlName="lastname" matInput name="lastname" placeholder="Ingrese el apellido" required>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <!-- <input type="text" matInput placeholder="pat@example.com" [formControl]="email" required [(ngModel)]="user.email" > -->
+                    <input type="text" class="form-control" formControlName="email" matInput
+                        placeholder="pat@example.com" required>
+                    <mat-error *ngIf="form.controls.email.errors?.email">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Username</mat-label>
+                    <input type="text" formControlName="username"  matInput  name="username" placeholder="Ingrese el apellido" required>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Ingrese un password</mat-label>
+                    <input matInput formControlName="password" name="password" [type]="hide ? 'password' : 'text'" >
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <h6>Admin User</h6>
+                <mat-checkbox id="admincheck" formControlName="isAdmin" name="isAdmin">Check me!</mat-checkbox>
+            </div>
+            <div class="form-group">
+                <h6>Staff User</h6>
+                <mat-checkbox id="staffcheck" formControlName="isStaff" name="isStaff" >Check me!</mat-checkbox>
+            </div>
+
+            <div class="form-group">
+                <div class="preview" *ngIf="preview && preview !== null">
+                    <img [src]="preview" class="preview">
+                </div>
+            </div>
+  
+            <div class="form-group">
+                <label for="exampleInputFile" class="bmd-label-floating">File input</label>
+                <input type="file" class="form-control-file" id="InputFile" name="upload" (change)="uploadFile($event)">
+            </div>
+   
+
+            <div class="col ">
+
+                <button mat-raised-button class="botones" color="primary" (click)="modifyUser(form, userForm)">Editar</button>
+                <button mat-stroked-button class="botones" routerLink="/visualizarusuarios" routerLinkActive="active">Cancelar</button>
+                <button mat-stroked-button class="botones" (click)="resetForm(userForm)" color="warn" >Limpiar</button>    
+            </div>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,77 @@
+<hr color="yellow" size=2>
+
+<div class="container">
+    <h2>
+        <strong>
+        Visualizar Alimentos
+      </strong>
+    </h2>
+</div>
+
+<!-- <div class="container" id="formulario">
+    <div class="col text-center">
+        <button mat-raised-button class="botones" color="primary" routerLink="/registrosubcategoria" routerLinkActive="active">SubCategorias</button>
+    </div>
+</div> -->
+
+
+
+<div class="container">
+    <mat-card class="example-card" id="tarjeta-alimento" *ngFor="let alimento of alimentoService.alimentos">
+
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <div mat-card-avatar>
+                    <img src="{{alimento.imagen}}" class="header-image" [alt]="alimento.nombre_comun">
+                </div>
+
+                <td>
+                    <div class="float-right">
+                        <button class="float-right" id="boton-borrar" mat-fab color="warn" (click)="deleteAlimento(alimento._id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button class="float-right" id="boton-editar" mat-fab color="accent" [routerLink]="['/edita-alimento', alimento._id]">
+                            <mat-icon >create</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <b class="titulo-propiedad">Nombre Común:</b> {{alimento.nombre_comun}}
+                </td>
+                <td>
+                    <b class="titulo-propiedad">Nombre Cientifico:</b> {{alimento.nombre_cientifico}}
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <b class="titulo-propiedad">Origen:</b> {{alimento.origen}}
+                </td>
+                <td>
+                    <b class="titulo-propiedad">Descripción:</b> {{alimento.description}}
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <b class="titulo-propiedad">Kcal:</b> {{alimento.kilocalorias}}
+                </td>
+                <td>
+                    <b class="titulo-propiedad">Glúcidos:</b> {{alimento.glucidos}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b class="titulo-propiedad">Proteínas:</b> {{alimento.proteinas}}
+                </td>
+                <td>
+                    <b class="titulo-propiedad">Lipidos:</b> {{alimento.proteinas}}
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+</div>

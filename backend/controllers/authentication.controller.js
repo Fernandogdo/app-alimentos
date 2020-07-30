@@ -9,32 +9,58 @@ authCtrl.verifyToken = async (req, res, next) => {
     var token = req.headers.authorization;
     if (!token) {
         return res.status(400).json({
-            error: "Es necesario el token de autenticación"
+            error: "Es necesario un token de autenticación"
         });
 
     }
-    //console.log("skkkkkkkkkk " + token);
+    //divide la cabezera authorization
     const tok = token.split(' ')[1];
-
-    //console.log("sddddddddddd " + tok);
     if (tok === '') {
-        return res.status(401).send('Petición no autorizada');
+        return res.status(401).send('Token vacio');
     }
+    //verifica el token 
+    try {
+        const payload = await jwt.verify(tok, secretK);
+        if (!payload) {
+            return res.status(401).send('Token invalido');
+        }
+        req.taken = payload.objtaken;
+        console.log(JSON.stringify(payload));
+        console.log(JSON.stringify(payload.objtaken._id));
 
-    const payload = await jwt.verify(tok, secretK);
-
-    if (!payload) {
-        return res.status(401).send('Petición no autorizada');
+        next();
+    } catch (error) {
+        return res.status(401).send(error);
     }
-    console.log(JSON.stringify(payload));
-    console.log(JSON.stringify(payload.objtaken._id));
+}
+
+authCtrl.validateRol_User = async (req, res, next) => {
+    const user = req.taken;
+    var manejo = req.originalUrl.includes('users');
+
+    if (!user.isAdmin == true && !user.isStaff == true) {
+        return res.status(401).json({
+            ok: false,
+            error: 'No es un usuario autorizado -> acción no permitida.',
+        });
+    }
+    if (!user.isAdmin == true && manejo == true) {
+        console.log('estado', user.isAdmin);
+        return res.status(401).json({
+            ok: false,
+            error: 'No es un usuario autorizado para esta acción.',
+        });
+    }
 
     next();
 }
 
-
 authCtrl.generateToken = async (req, res) => {
     const objtaken = req;
+<<<<<<< HEAD
+=======
+    //console.log("jjjjjjj" + objtaken);
+>>>>>>> fusionAlexFerna
     const token = await jwt.sign({ objtaken }, secretK);
     return token;
 }

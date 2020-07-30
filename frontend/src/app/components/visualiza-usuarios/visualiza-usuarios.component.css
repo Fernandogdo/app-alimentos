@@ -1,0 +1,53 @@
+
+.addicon{
+    color: #E0DED8;
+}
+
+.caddicon{
+    background-color: #003F72 !important;
+    margin-left: 49%;
+}
+
+.editicon{
+    color: #E0DED8;
+}
+
+.cediticon{
+    background-color: rgb(129, 119, 88)  !important;
+    
+}
+.deleteicon{
+    color: #E0DED8;
+}
+
+.cdeleteicon{
+    background-color: #A71930 !important;
+    margin-left: 15px;
+}
+
+#content{
+    height: fit-content;
+}
+
+.thead{
+    background-color: #003F72 !important;
+}
+
+.thead th{
+    
+    color:white !important;
+}
+
+.userN{
+    color: #003F72 ;
+}
+
+#adduser{
+    margin-bottom: 15px;
+} 
+.vuser{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+
+}

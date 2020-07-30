@@ -1,0 +1,54 @@
+<!-- <div class="container">
+    <h2>
+        <strong>
+           Objetos 3D
+        </strong>
+    </h2>
+</div> -->
+<!-- <mat-card class="example-card" id="tarjeta-categoria" *ngFor="let item of objetos">
+
+    <mat-card-header>
+        
+        <mat-icon id="objeto">file_copy</mat-icon>
+       
+    </mat-card-header>
+   
+    <div class="row">
+        <mat-card-content>
+            <p>
+                {{item.name}}
+            </p>
+        </mat-card-content>
+    </div>
+    <button required (change)="onObjeto($event)">Seleccionar</button>
+</mat-card> -->
+
+<!-- <label id="example-radio-group-label">Elige el modelo que deseas</label>
+<mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="favoriteSeason" (change)="getIdEstado($event)">
+    <mat-radio-button class="example-radio-button" *ngFor="let item of objetos" [value]="item.id">
+        {{item.name}}
+    </mat-radio-button>
+</mat-radio-group>
+<div>Your favorite season is: {{favoriteSeason}}</div> -->
+
+<!-- <select (change)="changeSelect(carrera.id)" [(ngModel)]="select">
+    <option value="0" selected>SELECCIONE UNA CARRERA</option>
+    <option value="{{carrera.id}}" *ngFor="let carrera of carrerasdocente">
+        {{ carrera.descripcion }}
+    </option>
+</select> -->
+<br>
+<br>
+
+<mat-form-field appearance="fill">
+    <mat-label>Elegir Modelo</mat-label>
+    <mat-select [(ngModel)]="favoriteSeason" (ngModelChange)="getIdEstado($event)">
+        <mat-option *ngFor="let item of objetos" [value]="item.id">
+            {{item.name}}
+        </mat-option>
+    </mat-select>
+
+</mat-form-field>
+<button (click)="onPropagar()">Aceptar</button>
+<!-- <button (click)="onPropagar()">Propagar</button> -->
+<!-- <div>Your favorite season is: {{favoriteSeason}}</div> -->
