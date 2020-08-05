@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,20 +15,20 @@ import { Router} from '@angular/router';
 })
 export class EditProfileComponent implements OnInit {
 
- 
   user = {} as User;
   userdata = {} as User;
   userselected;
   form: FormGroup;
-  preview: String;
-  constructor(private userService: UsersService, public fb: FormBuilder, 
-    private _snackBar: MatSnackBar, 
+  preview: string;
+  hide = true;
+  constructor(private userService: UsersService, public fb: FormBuilder,
+    private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private routed: Router) {
     this.form = this.fb.group({
       name: [''],
       lastname: [''],
-      email: [''],
+      email: ['', [Validators.required, Validators.email]],
       username: [''],
       password: [''],
       imagen: [null]
@@ -39,16 +39,15 @@ export class EditProfileComponent implements OnInit {
     this.userselected = this.route.snapshot.params['id'];
     this.getuserinformation(this.userselected);
   }
-  hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
+
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.form.get('email').hasError('required')) {
       return 'You must enter a value';
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
-  }
 
+    return this.form.get('email').hasError('email') ? 'No es un correo valido' : '';
+  }
   getuserinformation(user_id) {
     this.userService.getOneUser(user_id)
       .subscribe(res => {
@@ -58,6 +57,7 @@ export class EditProfileComponent implements OnInit {
           name: this.userdata.name,
           lastname: this.userdata.lastname,
           email: this.userdata.email,
+          password: this.userdata.password
         });
 
         this.preview = this.userdata.imagen;
@@ -73,7 +73,7 @@ export class EditProfileComponent implements OnInit {
       this.form.value.lastname,
       this.form.value.email,
       this.userdata.username,
-      this.userdata.password,
+      this.form.value.password,
       this.userdata.isAdmin,
       this.userdata.isStaff,
       this.form.value.imagen,
@@ -81,7 +81,7 @@ export class EditProfileComponent implements OnInit {
       .subscribe(res => {
         console.log(res)
         this.routed.navigate(['/profile']);
-        this._snackBar.open("Información Actulizada", "Cerrar", {
+        this._snackBar.open('Información Actulizada', 'Cerrar', {
           duration: 2000,
         });
         this.resetForm(formDirective);
