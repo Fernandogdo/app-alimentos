@@ -9,7 +9,8 @@ const { mongoose } = require('./database');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-    // parse application/json
+
+// parse application/json
 app.use(bodyParser.json())
 
 //Settings
@@ -20,7 +21,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
-
 // Routes of API
 app.use('/api/users', require('./routes/users.routes'));
 app.use('/api/roles', require('./routes/roles.routes'));
@@ -28,12 +28,11 @@ app.use('/api/login', require('./routes/login.routes'));
 app.use('/api/categorias', require('./routes/categorias.routes'));
 app.use('/api/subcategorias', require('./routes/subcategoria.routes'))
 app.use('/user', require('./routes/cliente.routes'))
-    // app.use('/api/alimento', require(''));
 
+// app.use('/api/alimento', require(''));
 app.use('/api/alimentos', require('./routes/alimentos.routes'));
 
 //Folder for public files
-
 app.use('/backend/uploads', express.static('backend/uploads'));
 
 //Starting the server
