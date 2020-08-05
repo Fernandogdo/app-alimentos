@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import { UsersService} from './../../services/users.service';
-import { Router} from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersService } from './../../services/users.service';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -26,10 +26,7 @@ export class VisualizaUsuariosComponent implements OnInit {
   getusersinformation() {
     this.userService.getUsers()
       .subscribe(res => {
-        this.usersdata =  res;
-        console.log(res);
-        
-    
+        this.usersdata = res;
       });
   }
 

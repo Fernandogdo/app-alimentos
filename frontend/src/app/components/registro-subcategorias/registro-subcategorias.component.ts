@@ -50,7 +50,7 @@ export class RegistroSubcategoriasComponent implements OnInit {
 
   ngOnInit() {
     this.idCategoria = this.route.snapshot.params['id'];
-    console.log(this.idCategoria)
+    // console.log(this.idCategoria)
     this.getSubCategories();
     // setTimeout(() => {
       
@@ -75,9 +75,6 @@ export class RegistroSubcategoriasComponent implements OnInit {
   }
 
   addSubCategory(formData: any, formDirective: NgForm) {
-    console.log(this.form.value.imagen);
-    console.log('SUBCATEGORIA', this.form.value.name);
-    console.log('CATEGORIAID', this.idCategoria);
     this.subcategoriaAlimentoService.postSubCategory(
       this.form.value.name,
       this.idCategoria,
@@ -92,45 +89,11 @@ export class RegistroSubcategoriasComponent implements OnInit {
         this.getSubCategories();
       });
   }
-
- 
-  
-
-
-  // addSubCategory(form: NgForm) {
-  //   if (form.value._id) {
-  //     this.subcategoriaAlimentoService.putSubCategory(form.value)
-  //       .subscribe(res => {
-  //         console.log(res);
-  //         this.subcategoriaAlimentoService.selectedsubCategory._id='';
-  //         this.subcategoriaAlimentoService.selectedsubCategory.name='';
-  //         this._snackBar.open("Sub Categoria Actualizada", "Cerrar", {
-  //           duration: 2000,
-  //         });
-  //         this.getSubCategories();
-
-  //       })
-
-  //   } else {
-  //     this.subcategoriaAlimentoService.postSubCategory(form.value)
-  //       .subscribe((nuevaRetroalimentacion) => {
-  //         console.log(nuevaRetroalimentacion);
-  //         console.log('se guardo');
-  //         this.subcategoriaAlimentoService.selectedsubCategory.name='';
-  //         this._snackBar.open("Sub Categoria Agregada", "Cerrar", {
-  //           duration: 2000,
-  //         });
-  //         this.getSubCategories();
-  //       });
-  //       this.getSubCategories(); 
-  //   }
-  // }
-
   
   getSubCategories() {
     this.subcategoriaAlimentoService.getSubCategory(this.idCategoria) //Toma el valor del empleado 
       .subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.subcategoriaAlimentoService.subcategories = res as SubcategoriaAlimento[];
       });
     // console.log("ID CAT:", this.idCategoria)
@@ -169,10 +132,10 @@ export class RegistroSubcategoriasComponent implements OnInit {
   getCategories() {
     this.categoriaAlimentoService.getCategoria(this.idCategoria) //Trae Categorias 
       .subscribe((res) => {
-        console.log(res);
+        // console.log(res);
         this.categoria = res;
         this.nombreCategoria = this.categoria.name;
-        console.log(this.nombreCategoria);
+        // console.log(this.nombreCategoria);
         this.Categorias = res as CategoriaAlimento[];
       })
   }

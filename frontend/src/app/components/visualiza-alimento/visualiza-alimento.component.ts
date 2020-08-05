@@ -21,7 +21,6 @@ export class VisualizaAlimentoComponent implements OnInit {
 
   ngOnInit() {
     this.idSubCategoria = this.route.snapshot.params['id'];
-    console.log('IDSUBCATEGORIA',this.idSubCategoria);
     this.getAlimentos();
   }
 
@@ -37,10 +36,10 @@ export class VisualizaAlimentoComponent implements OnInit {
   getAlimentos() {
     this.alimentoService.getAlimento(this.idSubCategoria) //Toma el valor del empleado 
       .subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.alimentoService.alimentos = res as Alimento[];
       });
-    console.log("ID CAT:", this.idSubCategoria)
+    // console.log("ID CAT:", this.idSubCategoria)
   }
 
   deleteAlimento(_id: string) {

@@ -35,18 +35,6 @@ export class SubcategoriaAlimentoService {
       observe: 'events'
     });
   }
-  //Add subcategoria
-  // postSubCategory(name: string, categoria: string, upload: File){
-  //   var formData: any = new FormData();
-  //   formData.append('name', name);
-  //   formData.append('categoria', categoria);
-  //   formData.append('upload', upload);
-
-  //   return this.http.post(this.URL, formData, {
-  //     reportProgress: true,
-  //     observe: 'events'
-  //   });
-  // }
 
   //Trae data de SubCategoria por id de Subcategoria
   getOneSubCategoria(id){
@@ -65,9 +53,6 @@ export class SubcategoriaAlimentoService {
     formData.append('name', name);
     formData.append('categoria', categoria);
     formData.append('upload', upload);
-    console.log('IDSUBSERVI', idSubcategoria);
-    console.log('NAMESERVI', name);
-    console.log('IDCATSERVI', categoria);
     return this.http.put(this.URL + idSubcategoria, formData);
     
   }

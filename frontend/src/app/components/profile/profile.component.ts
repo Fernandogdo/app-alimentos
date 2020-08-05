@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   private img_src;
   constructor(private userService: UsersService,
     private route: ActivatedRoute) { }
-    
+
   idUser;
   ngOnInit() {
     // this.idUser = this.route.snapshot.params['id'];
@@ -24,17 +24,13 @@ export class ProfileComponent implements OnInit {
   getprofieinformation() {
     this.userService.getOneUser(this.idUser)
       .subscribe(res => {
-        console.log(res)
-        
-        
-        this.profiledata =  res;
+        this.profiledata = res;
         if (this.profiledata.imagen == null || this.profiledata.imagen == "") {
           this.img_src = "../../../assets/no-img.jpg";
-        }else{
+        } else {
           this.img_src = this.profiledata.imagen;
         }
       });
-
   }
 
 }

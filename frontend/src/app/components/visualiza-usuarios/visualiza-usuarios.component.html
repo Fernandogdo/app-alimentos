@@ -4,44 +4,43 @@
         <div id="adduser" class="row">
 
             <button mat-mini-fab class="caddicon" type="button" routerLink="/registrousuario" routerLinkActive="active">
-                <mat-icon class="addicon">add_circle</mat-icon>
-            </button>
+              <mat-icon class="addicon">add_circle</mat-icon>
+          </button>
 
         </div>
 
         <div class="row" id="content">
             <table class="table table-hover">
                 <thead class="thead">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let user of usersdata; let i = index">
-                    <th scope="row">{{i+1}}</th>
-                    <td>{{user.name}}</td>
-                    <td>{{user.lastname}}</td>
-                    <td>{{user.username}}</td>
-                    <td>{{user.password}}</td>
-                    <td> <div class="row justify-content-md-center">
-                        <button mat-mini-fab class="cediticon" [routerLink]="['/editarusuario/', user._id]"
-                            routerLinkActive="active">
-                            <mat-icon class="editicon">create</mat-icon>
-                        </button>
+                    <tr *ngFor="let user of usersdata; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{user.name}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.username}}</td>
+                        <td>
+                            <div class="row justify-content-md-center">
+                                <button mat-mini-fab class="cediticon" [routerLink]="['/editarusuario/', user._id]" routerLinkActive="active">
+                          <mat-icon class="editicon">create</mat-icon>
+                      </button>
 
-                        <button mat-mini-fab class="cdeleteicon" (click)="deleteuserinformation(user._id)">
-                            <mat-icon class="deleteicon">delete_sweep</mat-icon>
-                        </button>
-                    </div></td>
-                  </tr>
+                                <button mat-mini-fab class="cdeleteicon" (click)="deleteuserinformation(user._id)">
+                          <mat-icon class="deleteicon">delete_sweep</mat-icon>
+                      </button>
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
-              </table>
-              
+            </table>
+
         </div>
 
     </div>

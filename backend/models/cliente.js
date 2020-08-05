@@ -1,3 +1,4 @@
+//Define schema of data
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 

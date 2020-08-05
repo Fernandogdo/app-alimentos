@@ -1,3 +1,4 @@
+ 
 import { Component, OnInit } from '@angular/core';
 // import { FormControl, Validators FormGroup, FormBuilder } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -18,14 +19,14 @@ export class EditUsuariosComponent implements OnInit {
   userselected;
   form: FormGroup;
   preview: String;
-  constructor(private userService: UsersService,
-    private route: ActivatedRoute,
+  hide = true;
+  constructor(private userService: UsersService, private route: ActivatedRoute,
     public fb: FormBuilder,
     private _snackBar: MatSnackBar) {
     this.form = this.fb.group({
       name: [''],
       lastname: [''],
-      email: ['',[Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       username: [''],
       password: [''],
       isAdmin: [''],
@@ -35,14 +36,11 @@ export class EditUsuariosComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.userselected = this.route.snapshot.params['id'];
- 
     this.getuserinformation(this.userselected)
-
   }
 
-  hide = true;
+
   getErrorMessage() {
     if (this.form.get('email').hasError('required')) {
       return 'You must enter a value';
@@ -55,7 +53,6 @@ export class EditUsuariosComponent implements OnInit {
     this.userService.getOneUser(user_id)
       .subscribe(res => {
         this.userdata = res;
-        console.log(res);
         this.form.patchValue({
           name: this.userdata.name,
           lastname: this.userdata.lastname,
@@ -87,14 +84,13 @@ export class EditUsuariosComponent implements OnInit {
   }
 
   modifyUser(formData: any, formDirective: NgForm) {
-    
+
     if (this.form.value.isAdmin === undefined || this.form.value.isAdmin === '') {
       this.form.value.isAdmin = false;
     }
-    if (this.form.value.isStaff === undefined || this.form.value.isStaff === '' ) {
+    if (this.form.value.isStaff === undefined || this.form.value.isStaff === '') {
       this.form.value.isStaff = false;
     }
-    console.log(this.form.value);
 
     this.userService.putUser(
       this.userselected,
@@ -109,8 +105,7 @@ export class EditUsuariosComponent implements OnInit {
 
     )
       .subscribe(res => {
-        console.log(res)
-        this._snackBar.open("Usuario Editado", "Cerrar", {
+        this._snackBar.open('Usuario Editado', 'Cerrar', {
           duration: 2000,
         });
         this.resetForm(formDirective);
@@ -124,7 +119,5 @@ export class EditUsuariosComponent implements OnInit {
       this.preview = null;
     }
   }
-  
+
 }
-
-

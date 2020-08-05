@@ -19,7 +19,7 @@ export class ModalEditSubcategoriaComponent implements OnInit {
   idCategoria;
   subCategoriaSelected;
   oneSubCategoria = [] as SubcategoriaAlimento
-  
+
 
   constructor(
     public fb: FormBuilder,
@@ -37,12 +37,8 @@ export class ModalEditSubcategoriaComponent implements OnInit {
 
   ngOnInit() {
     this.idSubcategoria = this.data.idSubcategoria;
-    console.log('IDSUBCATEGORIA:', this.idSubcategoria);
     this.idCategoria = this.data.idCategoria;
-    console.log('IDCATEGORIA:', this.idCategoria);
     this.name = this.data.name;
-    console.log('IDCATEGNOMBRE SUB CATEORIA:', this.name);
-
     this.subCategoriaSelected = this.idSubcategoria;
     this.getSubCategoria(this.subCategoriaSelected)
   }
@@ -63,68 +59,40 @@ export class ModalEditSubcategoriaComponent implements OnInit {
   }
 
 
-  getSubCategoria(idSubCategoria){
+  getSubCategoria(idSubCategoria) {
     this.subcategoriaAlimentoService.getOneSubCategoria(idSubCategoria)
       .subscribe(res => {
         this.oneSubCategoria = res
         this.form.patchValue({
-        name: this.oneSubCategoria.name
+          name: this.oneSubCategoria.name
           // description: this.oneCategoria.description,
         });
         this.preview = this.oneSubCategoria.imagen;
-        console.log('SERVER',res);
       });
-      this.getSubCategories();
-      
+    this.getSubCategories();
+
   }
 
 
   editSubCategory() {
-    console.log('IDSUBCATEGORIA', this.idSubcategoria);
-    console.log('NAMESUB', this.name);
-    console.log('IDCATEGORIA', this.idCategoria);
-    console.log('IMAGEBSUCEDI',  this.form.value.imagen);
-
-      // window.alert('Ingrese la Imagen');
-    // var mandaname;
-    //   if (this.name != this.form.value.name) {
-    //     mandaname = this.form.value.name
-    //   } else{
-    //     mandaname= this.name
-    //   }
-
-    //   if (this.name) {
-    //     mandaname = this.name
-    //   }
-
-    //   if (this.form.value.name != this.name) {
-    //     mandaname = this.form.value.name      
-    //   }
-
-    //   if (this.form.value.imagen) {
-    //     mandaname = this.name
-    //   }
-
-      this.subcategoriaAlimentoService.putSubCategory(
-        this.idSubcategoria,
-        this.form.value.name,
-        this.idCategoria,
-        this.form.value.imagen
-      )
-        .subscribe(res => {
-          console.log(res);
-          this._snackBar.open("Categoria Actualizada", "Cerrar", {
-            duration: 2000,
-          });
-          // this.ngOnInit()
-          this.getSubCategories();
+    this.subcategoriaAlimentoService.putSubCategory(
+      this.idSubcategoria,
+      this.form.value.name,
+      this.idCategoria,
+      this.form.value.imagen
+    )
+      .subscribe(res => {
+        this._snackBar.open("Categoria Actualizada", "Cerrar", {
+          duration: 2000,
         });
+        // this.ngOnInit()
+        this.getSubCategories();
+      });
   }
 
   getSubCategories() {
     this.subcategoriaAlimentoService.getSubCategory(this.idCategoria) //Toma el valor del empleado 
       .subscribe(res => {
-        console.log(res)
         this.subcategoriaAlimentoService.subcategories = res as SubcategoriaAlimento[];
       });
     // console.log("ID CAT:", this.idCategoria)

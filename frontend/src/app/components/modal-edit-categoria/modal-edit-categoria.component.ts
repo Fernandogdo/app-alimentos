@@ -43,16 +43,11 @@ export class ModalEditCategoriaComponent implements OnInit {
 
   ngOnInit() {
     this.idCategoria = this.data.idCategoria;
-    console.log('IDCATEGORIA:', this.idCategoria);
     // this.setValues();
     this.name = this.data.name;
-    console.log('NombreCat:', this.name);
     this.getCategories();
     this.description = this.data.description;
-    console.log('Descripcion:', this.description);
     this.imagen = this.data.img;
-    console.log('Imagen:', this.imagen);
-
     this.categoriaSelected = this.idCategoria;
     this.getCategoria(this.categoriaSelected)
   }
@@ -108,7 +103,6 @@ export class ModalEditCategoriaComponent implements OnInit {
       this.form.value.imagen
     )
       .subscribe(res => {
-        console.log(res);
         this._snackBar.open("Categoria Actualizada", "Cerrar", {
           duration: 2000,
         });
@@ -121,7 +115,6 @@ export class ModalEditCategoriaComponent implements OnInit {
       .subscribe((res) => {
         // this.categoriaAlimentoService.categories = res as CategoriaAlimento[];
         this.Categorias = res as CategoriaAlimento[];
-        console.log(res);
       })
   }
 }

@@ -1,7 +1,7 @@
 <div class="container">
     <h2 mat-dialog-title id="formTUser">Actualizar profile</h2>
     <mat-card class="example-card">
-        
+
         <form [formGroup]="form" #userForm="ngForm">
             <div class="form-group">
                 <mat-form-field class="example-full-width">
@@ -17,12 +17,23 @@
                     <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
                 </mat-form-field>
             </div>
+
             <div class="form-group">
                 <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
                     <!-- <input type="text" matInput placeholder="pat@example.com" [formControl]="email" required [(ngModel)]="user.email" > -->
-                    <input type="text" formControlName="email" matInput  placeholder="pat@example.com" required>
-                    <!-- <mat-error *ngIf="emails.invalid">{{getErrorMessage()}}</mat-error> -->
+                    <input type="text" class="form-control" formControlName="email" matInput placeholder="pat@example.com" required>
+                    <mat-error *ngIf="form.controls.email.errors?.email">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Ingrese un password</mat-label>
+                    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
                 </mat-form-field>
             </div>
 
@@ -39,8 +50,7 @@
 
             <div class="col ">
                 <button mat-raised-button class="botones" color="primary" (click)="modifyProfileUser(form, userForm)">Guardar</button>
-                <button mat-stroked-button class="botones" routerLink="/profile"
-                    routerLinkActive="active">Cancelar</button>
+                <button mat-stroked-button class="botones" routerLink="/profile" routerLinkActive="active">Cancelar</button>
                 <button mat-stroked-button class="botones" (click)="resetForm(userForm)" color="warn">Limpiar</button>
 
             </div>
